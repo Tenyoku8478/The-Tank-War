@@ -12,8 +12,8 @@ class Map{
 				let i = 0;
 				while (i < 3){
 					let map8[(row*3)+(col*3)+i] = _map[row*15+col];
-					let map8[(row*4)+(col*3)+i] = _map[row*15+col];
-					let map8[(row*5)+(col*3)+i] = _map[row*15+col];
+					let map8[(row*3)+(col*3)+i+45] = _map[row*15+col];
+					let map8[(row*3)+(col*3)+i+90] = _map[row*15+col];
 					let i = i + 1;
 				}
 				let col = col + 1;
@@ -94,8 +94,9 @@ class Map{
 			}
 			let i = i + 1;
 		}
-		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29))
-		    {let flag = true;}
+		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29)){
+			let flag = true;
+		}
 		return ~flag;
 	}
 }
