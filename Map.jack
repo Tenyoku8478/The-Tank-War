@@ -21,8 +21,8 @@ class Map{
 		}
 		//QB
 		let i = 20;
-		while (i < 26){
-			let j = 24;
+		while (i < 25){
+			let j = 25;
 			while (j < 30){
 				let map8[i+(j*45)] = 5;
 				let j = j + 1;
@@ -31,17 +31,17 @@ class Map{
 		}
 		//soft around QB
 		let i = 18;
-		while (i < 28){
-			let map8[22*45+i] = 3;
-			let map8[23*45+i] = 3;
+		while (i < 27){
+			let map8[18*45+i] = 3;
+			let map8[19*45+i] = 3;
 			let i = i + 1;
 		}
-		let i = 24;
+		let i = 22;
 		while (i < 30){
 			let map8[i*45+18] = 3;
 			let map8[i*45+19] = 3;
+			let map8[i*45+25] = 3;
 			let map8[i*45+26] = 3;
-			let map8[i*45+27] = 3;
 			let i = i + 1;
 		}
 		return this;
@@ -143,7 +143,7 @@ class Map{
 	}
 
 	method void update(int x1, int y1, int x2, int y2, int type){
-		var i, j;
+		var int i, j;
 		let i = x1;
 		while (i < (x2+1)){
 			let j = y1;
@@ -154,5 +154,9 @@ class Map{
 			let i = i + 1;
 		}
 		return;
+	}
+
+	method int peek(int x, int y){
+		return map8[y*45+x];
 	}
 }
