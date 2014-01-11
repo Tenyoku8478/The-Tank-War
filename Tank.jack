@@ -1,0 +1,78 @@
+class Tank
+{
+    static Array x_bound, y_bound;
+
+    field Image img;
+    field int off_x, off_y;
+    field int x, y, dir;
+
+    constructor Tank new(int _x, int _y, int _dir, int _img)
+    {
+        let x = _x;
+        let y = _y;
+        let off_x = x*8+12;
+        let off_y = y*8+8;
+        let dir = _dir;
+        let img = _img;
+        do img.draw(off_x, off_y, dir);
+        return this;
+    }
+
+    function void init()
+    {
+        let x_bound = Array.new(4);
+        let y_bound = Array.new(4);
+        let x_bound[0] = -1;
+        let y_bound[0] = 0;
+        let x_bound[1] = 45-3;
+        let y_bound[1] = -1;
+        let x_bound[2] = -1;
+        let y_bound[2] = 30-3;
+        let x_bound[3] = 0;
+        let y_bound[3] = -1;
+        return;
+    }
+
+    method boolean move(int _dir)
+    {
+        let dir = _dir;
+        if((x=x_bound[dir])|(y=y_bound[dir]))
+        {
+            do img.draw(off_x, off_y, dir);
+            return false;
+        }
+        else{if(dir=0)
+        {
+            let y = y-1;
+            let off_y = off_y-8;
+            do img.draw(off_x, off_y, dir);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(off_x, off_y+24, off_x+23, off_y+31);
+        }
+        else{if(dir=1)
+        {
+            let x = x+1;
+            let off_x = off_x+8;
+            do img.draw(off_x, off_y, dir);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(off_x-8, off_y, off_x-1, off_y+23);
+        }
+        else{if(dir=2)
+        {
+            let y = y+1;
+            let off_y = off_y+8;
+            do img.draw(off_x, off_y, dir);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(off_x, off_y-8, off_x+23, off_y-1);
+        }
+        else{if(dir=3)
+        {
+            let x = x-1;
+            let off_x = off_x-8;
+            do img.draw(off_x, off_y, dir);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(off_x+24, off_y, off_x+31, off_y+23);
+        }}}}}
+        return true;
+    }
+}
