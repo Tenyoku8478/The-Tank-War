@@ -10,14 +10,14 @@ class Main{
         do Image.set_origin(12, 8);
 
 		let map =  Book.get_map(1);
-		do map.debug_draw();
+		do map.draw();
         do Tank.set_map(map);
 
-        let tank = Tank.new(0, 0, 2, Album.get_tank1());
+        let tank = Tank.new(1, 0, 0, 2, Album.get_tank1());
         let ai1 = AI.new(tank, 2);
-        let tank = Tank.new(21, 3, 2, Album.get_tank1());
+        let tank = Tank.new(2, 21, 3, 2, Album.get_tank2());
         let ai2 = AI.new(tank, 2);
-        let tank = Tank.new(42, 0, 2, Album.get_tank1());
+        let tank = Tank.new(2, 42, 0, 2, Album.get_tank2());
         let ai3 = AI.new(tank, 2);
         do Rand.reset(71, 22);
         while(true)
