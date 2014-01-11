@@ -1,5 +1,5 @@
 class Album{
-	static Image tank1, tank2, soft, hard, QB;
+	static Image tank1, tank2, soft, hard, QB, bullet;
 	function void init(){
 		var Array map;
 		let map = Array.new(36);
@@ -224,6 +224,12 @@ class Album{
 		let map[98] = 9232;
 		let map[99] = 8;
 		let QB = Image.new(40, 40, map);
+		let map = Array.new(4);
+		let map[0] = 6144;
+		let map[1] = 15384;
+		let map[2] = 15420;
+		let map[3] = 60;
+		let bullet = Image.new(8, 8, map);
 		return;
 	}
 	function Image get_tank1(){
@@ -240,5 +246,8 @@ class Album{
 	}
 	function Image get_QB(){
 		return QB;
+	}
+	function Image get_bullet(){
+		return bullet;
 	}
 }

@@ -32,11 +32,11 @@ class Map{
 		//soft around QB
 		let i = 18;
 		while (i < 27){
-			let map8[18*45+i] = 3;
-			let map8[19*45+i] = 3;
+			let map8[23*45+i] = 3;
+			let map8[24*45+i] = 3;
 			let i = i + 1;
 		}
-		let i = 22;
+		let i = 25;
 		while (i < 30){
 			let map8[i*45+18] = 3;
 			let map8[i*45+19] = 3;
@@ -141,9 +141,11 @@ class Map{
 		}
 		return ~flag;
 	}
-
 	method void update(int x1, int y1, int x2, int y2, int type){
 		var int i, j;
+		if(type = 0){
+			do Image.clear(x1*8, y1*8, x2*8, y2*8);
+		}
 		let i = x1;
 		while (i < (x2+1)){
 			let j = y1;
@@ -159,4 +161,6 @@ class Map{
 	method int peek(int x, int y){
 		return map8[y*45+x];
 	}
+
+
 }

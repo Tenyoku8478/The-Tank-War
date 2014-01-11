@@ -1,0 +1,37 @@
+class List{
+	field int data;
+	field List previous, next;
+
+	constructor List new(int _data, List _previous, List _next){
+		let data = _data;
+		let previous = _previous;
+		let next = _next;
+		return this;
+	}
+
+	method void assign_next(List data){
+		let next = data;
+		return;
+	}
+
+	method void assign_previous(List data){
+		let previous = data;
+		return;
+	}
+
+	method List delete(List head){
+		var List ptr;
+		let ptr = head;
+		if (previous = null){
+			let ptr = next;
+		}
+		if (~(previous = null)){
+			do previous.assign_next(next);
+		}
+		if (~(next = null)){
+			do next.assign_previous(previous);
+		}
+		do Memory.deAlloc(this);
+		return ptr;
+	}
+}

@@ -1,59 +1,55 @@
 class Bullet{
-	static int size;
+	static Image img;
 	field int x, y, dir, v;
+
+	function void init(){
+		let img = Album.get_bullet();
+		return;
+	}
 
 	constructor Bullet new(int _x, int _y, int _dir, int _v){
 		let x = _x;
 		let y = _y;
 		let dir = _dir;
 		let v = _v;
-		let size = 8;
-		do draw();
+		do img.draw(x*8, y*8, dir);
 		return this;
 	}
 
-	method void draw(){
-		do Screen.setColor(true);
-		do Screen.drawRectangle(x, y, x+size, y+size);
-		return;
-	}
-
-	method void erase(){
-		do Screen.setColor(false);
-		do Screen.drawRectangle(x, y, x+size, y+size);
-		return;
-	}
-
-	method void moveBullet(){
+	method boolean moveBullet(Map map){
+		var int type;
+		do Image.clear(x*8, y*8, x*8+8, y*8+8);
 		if (dir = 0){
 			if (~(y-v < 0)){
-				do erase();
 				let y = y - v;
-				do draw();
 			}
 		}
 		if (dir = 1){
-			if (x+v+size < 512){
-				do erase();
+			if (x+v < 45){
 				let x = x + v;
-				do draw();
 			}
 		}
 		if (dir = 2){
-			if (y+v+size < 512){
-				do erase();
+			if (y+v < 30){
 				let y = y + v;
-				do draw();
 			}
 		}
 		if (dir = 3){
 			if (~(x-v < 0)){
-				do erase();
 				let x = x - v;
-				do draw();
 			}
 		}
-		return;
+		let type = map.peek(x, y);
+		if (type = 0){
+			do img.draw(x*8, y*8, dir);
+			return false;
+		}
+		if ((type = 1) | (type = 2)){
+		}
+		if (type = 3){
+			do map.update(x, y, x, y, 0);
+		}
+		return true;
 	}
 
 }
