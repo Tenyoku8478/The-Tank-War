@@ -1,19 +1,18 @@
 class Map{
 	field Array map8, map24;
 	constructor Map new(Array _map){
-		var int row, col, index, i;
+		var int row, col, i;
 		let map24 = _map;
 		let row = 0;
 		let map8 = Array.new(30*45);
-		let index = 0;
 		while (row < 10){
 			let col = 0;
 			while (col < 15){
 				let i = 0;
 				while (i < 3){
-					let map8[(row*3)+(col*3)+i] = _map[row*15+col];
-					let map8[(row*3)+(col*3)+i+45] = _map[row*15+col];
-					let map8[(row*3)+(col*3)+i+90] = _map[row*15+col];
+					let map8[(row*135)+(col*3)+i] = _map[row*15+col];
+					let map8[(row*135)+(col*3)+i+45] = _map[row*15+col];
+					let map8[(row*135)+(col*3)+i+90] = _map[row*15+col];
 					let i = i + 1;
 				}
 				let col = col + 1;
