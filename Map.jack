@@ -1,18 +1,17 @@
 class Map{
-	field Array map;
-	field Album album;
+	field Array map8, map24;
 	constructor Map new(Array _map){
 		var int row, col, index, i;
+		let map24 = _map;
 		let row = 0;
-		let map = Array.new(30*45);
+		let map8 = Array.new(30*45);
 		let index = 0;
-		let album = Album.new();
 		while (row < 10){
 			let col = 0;
 			while (col < 15){
 				let i = 0;
 				while (i < 9){
-					let map[index] = _map[row*15+col];
+					let map8[index] = _map[row*15+col];
 					let index = index + 1;
 					let i = i + 1;
 				}
@@ -20,26 +19,25 @@ class Map{
 			}
 			let row = row + 1;
 		}
-		do draw(_map);
 		return this;
 	}
 
-	method void draw(Array _map){
+	method void draw(){
 		var int row, col, i, j;
 		var Image tank1, tank2, soft, hard, QB;
-		let tank1 = album.get_tank1();
-		let tank2 = album.get_tank2();
-		let soft = album.get_soft();
-		let hard = album.get_hard();
-		let QB = album.get_QB();
+		let tank1 = Album.get_tank1();
+		let tank2 = Album.get_tank2();
+		let soft = Album.get_soft();
+		let hard = Album.get_hard();
+		let QB = Album.get_QB();
 		let row = 0;
 		while (row < 10){
 			let col = 0;
 			while (col < 15){
-				if (_map[row*15+col] = 1){ //I
+				if (map24[row*15+col] = 1){ //I
 					do tank1.draw(col*24, row*24, 0);
 				}
-				if (_map[row*15+col] = 3){ //Soft
+				if (map24[row*15+col] = 3){ //Soft
 					let i = 0;
 					while (i < 3){
 						let j = 0;
@@ -50,10 +48,10 @@ class Map{
 						let i = i + 1;
 					}
 				}
-				if (_map[row*15+col] = 4){ //Hard
+				if (map24[row*15+col] = 4){ //Hard
 					do hard.draw(col*24, row*24, 0);
 				}
-				if (_map[row*15+col] = 2){ //Enemy
+				if (map24[row*15+col] = 2){ //Enemy
 					do tank2.draw(col*24, row*24, 0);
 				}
 				let col = col + 1;
@@ -62,7 +60,7 @@ class Map{
 		}
 		do QB.draw(160, 200, 0);
 		let i = 0;
-		while (i < 7){
+		while (i < 9){
 			do soft.draw(144+(i*8), 184, 0);
 			do soft.draw(144+(i*8), 192, 0);
 			let i = i + 1;
