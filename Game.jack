@@ -41,7 +41,6 @@ class Game{
 		var Bullet bullet;
         var int i;
 		while(true){
-            do bullet_list.print();
             do player.play();
 			do AI_list.reset();
 			while (~AI_list.end()){

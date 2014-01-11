@@ -86,30 +86,23 @@ class Tank
             {
                 let y = y-1;
                 let off_y = off_y-8;
-                do img.draw(off_x, off_y, dir);
-                do Image.clear(off_x, off_y+24, off_x+23, off_y+31);
             }
             else{if(dir=1)
             {
                 let x = x+1;
                 let off_x = off_x+8;
-                do img.draw(off_x, off_y, dir);
-                do Image.clear(off_x-8, off_y, off_x-1, off_y+23);
             }
             else{if(dir=2)
             {
                 let y = y+1;
                 let off_y = off_y+8;
-                do img.draw(off_x, off_y, dir);
-                do Image.clear(off_x, off_y-8, off_x+23, off_y-1);
             }
             else{if(dir=3)
             {
                 let x = x-1;
                 let off_x = off_x-8;
-                do img.draw(off_x, off_y, dir);
-                do Image.clear(off_x+24, off_y, off_x+31, off_y+23);
             }}}}
+            do img.draw(off_x, off_y, dir);
             do map.update(x+x_l[op[dir]], y+y_l[op[dir]], x+x_r[op[dir]], y+y_r[op[dir]], 0);
         }
         return true;
