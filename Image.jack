@@ -12,10 +12,17 @@ class Image
         let _map = map;
         return this;
     }
-    function set_orgin(int x, int y)
+    function void set_origin(int x, int y)
     {
-        off_x = x;
-        off_y = y;
+        let off_x = x;
+        let off_y = y;
+        return;
+    }
+    function void clear(int x1, int y1, int x2, int y2)
+    {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x1+off_x, y1+off_y, x2+off_x, y2+off_y);
+        return;
     }
     method int _turn_x(int x, int y, int dir)
     {

@@ -1,9 +1,14 @@
-class Main
-{
-    function void main()
-    {
+class Main{
+	function void main(){
         var Tank tank;
         var AI ai1, ai2, ai3;
+
+		do Album.init();
+		do Book.init();
+        do Tank.init();
+        do Image.set_origin(12, 8);
+
+		do Book.draw_map(1);
         let tank = Tank.new(0, 0, 0, Album.get_tank1());
         let ai1 = AI.new(tank, 0);
         let tank = Tank.new(10, 0, 0, Album.get_tank1());
@@ -17,6 +22,6 @@ class Main
             do ai2.play();
             do ai3.play();
         }
-        return;
-    }
+		return;
+	}
 }

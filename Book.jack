@@ -1,6 +1,6 @@
 class Book{
-	field Map map1;
-	constructor Book new(){
+	static Map map1;
+	function void init(){
 		var Array map;
 		let map = Array.new(150);
 		let map[0] = 1;
@@ -154,6 +154,13 @@ class Book{
 		let map[148] = 0;
 		let map[149] = 0;
 		let map1 = Map.new(map);
-		return this;
+		return;
+	}
+
+	function void draw_map(int n){
+		if (n = 1){
+			do map1.draw();
+		}
+		return;
 	}
 }

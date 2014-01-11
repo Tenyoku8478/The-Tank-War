@@ -1,0 +1,27 @@
+class Statement{
+	field Label life, enemy, score;
+	
+	constructor Statement new(int _life, int _enemy){
+		do Output.printString("test");
+		let life = Label.new(1, 0, _life, "Life : ");
+		let enemy = Label.new(2, 0, _enemy, "Enemy : ");
+		let score = Label.new(3, 0, 0, "Score : ");
+		do display();
+		return this;
+	}
+
+	method void update(int _life, int _enemy, int _score){
+		do life.assign(_life);
+		do enemy.assign(_enemy);
+		do score.assign(_score);
+		do display();
+		return;
+	}
+
+	method void display(){
+		do life.display();
+		do enemy.display();
+		do score.display();
+		return;
+	}
+}
