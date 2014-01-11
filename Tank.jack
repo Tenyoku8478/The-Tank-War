@@ -64,8 +64,7 @@ class Tank
             return false;
         }
         else{
-            map.update(x+x_l[dir], y+y_l[dir], x+x_r[dir], y+y_r[dir], type);
-            map.update(x+x_l[op[dir]], y+y_l[op[dir]], x+x_r[op[dir]], y+y_r[op[dir]], 0);
+            do map.update(x+x_l[dir], y+y_l[dir], x+x_r[dir], y+y_r[dir], type);
             if(dir=0)
             {
                 let y = y-1;
@@ -93,7 +92,9 @@ class Tank
                 let off_x = off_x-8;
                 do img.draw(off_x, off_y, dir);
                 do Image.clear(off_x+24, off_y, off_x+31, off_y+23);
-        }}}}}
+            }}}}
+            do map.update(x+x_l[op[dir]], y+y_l[op[dir]], x+x_r[op[dir]], y+y_r[op[dir]], 0);
+        }
         return true;
     }
 }
