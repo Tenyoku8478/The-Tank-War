@@ -1,37 +1,46 @@
 class List{
-	field int data;
-	field List previous, next;
+    field Node head, pre, ptr;
 
-	constructor List new(int _data, List _previous, List _next){
-		let data = _data;
-		let previous = _previous;
-		let next = _next;
-		return this;
-	}
-
-	method void assign_next(List data){
-		let next = data;
-		return;
-	}
-
-	method void assign_previous(List data){
-		let previous = data;
-		return;
-	}
-
-	method List delete(List head){
-		var List ptr;
-		let ptr = head;
-		if (previous = null){
-			let ptr = next;
-		}
-		if (~(previous = null)){
-			do previous.assign_next(next);
-		}
-		if (~(next = null)){
-			do next.assign_previous(previous);
-		}
-		do Memory.deAlloc(this);
-		return ptr;
-	}
+	constructor List new(){
+        let head = 0;
+        let pre = 0;
+        let ptr = 0;
+        return this;
+    }
+    method void reset()
+    {
+        let ptr = head;
+        let pre = 0;
+        return;
+    }
+    method boolean next()
+    {
+        if(ptr=0) return false;
+        let pre = ptr;
+        let ptr = ptr.get_next();
+        return ~(ptr=0);
+    }
+    method int get()
+    {
+        if(ptr=0) return 0;
+        return ptr.get_data();
+    }
+    method void insert(int data)
+    {
+        var Node tmp;
+        let tmp = Node.new(data, head);
+        let head = tmp;
+        return;
+    }
+    method void delete()
+    {
+        var Node tmp;
+        if(ptr = 0) return;
+        if(pre = 0) { let head = ptr.get_next(); }
+        else { do pre.set_next(ptr.get_next()); }
+        let tmp = ptr;
+        let ptr = ptr.get_next();
+        Memory.deAllocate(tmp);
+        return;
+    }
 }

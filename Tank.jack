@@ -97,4 +97,8 @@ class Tank
         }
         return true;
     }
+    method void attacked(int _x, int _y)
+    {
+        return;
+    }
 }
