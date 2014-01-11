@@ -79,4 +79,22 @@ class Map{
 		}
 		return;
 	}
+
+	method boolean check(int x1, int y1, int x2, int y2){
+		var int i, j;
+		var boolean flag;
+		let flag = false;
+		let i = x1;
+		while (i < x2+1){
+			let j = y1;
+			while (j < y2+1){
+				let flag = flag | map8[i+j*45];
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29))
+		    {let flag = true;}
+		return ~flag;
+	}
 }

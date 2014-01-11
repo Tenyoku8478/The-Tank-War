@@ -157,10 +157,10 @@ class Book{
 		return;
 	}
 
-	function void draw_map(int n){
+	function Map get_map(int n){
 		if (n = 1){
-			do map1.draw();
-		}
-		return;
+			return map1;
+        }
+        return 0;
 	}
 }
