@@ -1,8 +1,10 @@
 class Main{
 	function void main(){
+		var Map map;
 		do Album.init();
 		do Book.init();
-		do Book.draw_map(1);
+		let map =  Book.get_map(1);
+		do map.draw();
 		return;
 	}
 }
