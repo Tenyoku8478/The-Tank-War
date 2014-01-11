@@ -11,12 +11,13 @@ class Main{
 
 		let map =  Book.get_map(1);
 		do map.draw();
+        do Tank.set_map(map);
 
         let tank = Tank.new(0, 0, 0, Album.get_tank1());
         let ai1 = AI.new(tank, 0);
-        let tank = Tank.new(10, 0, 0, Album.get_tank1());
+        let tank = Tank.new(21, 3, 0, Album.get_tank1());
         let ai2 = AI.new(tank, 0);
-        let tank = Tank.new(20, 0, 0, Album.get_tank1());
+        let tank = Tank.new(42, 0, 0, Album.get_tank1());
         let ai3 = AI.new(tank, 0);
         do Rand.reset(71, 22);
         while(true)
