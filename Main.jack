@@ -10,7 +10,7 @@ class Main{
         do Image.set_origin(12, 8);
 
 		let map =  Book.get_map(1);
-		do map.draw();
+		do map.debug_draw();
         do Tank.set_map(map);
 
         let tank = Tank.new(0, 0, 2, Album.get_tank1());

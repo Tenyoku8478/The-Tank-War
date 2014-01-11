@@ -1,7 +1,7 @@
 class Map{
 	field Array map8, map24;
 	constructor Map new(Array _map){
-		var int row, col, i;
+		var int row, col, i, j;
 		let map24 = _map;
 		let row = 0;
 		let map8 = Array.new(30*45);
@@ -19,7 +19,50 @@ class Map{
 			}
 			let row = row + 1;
 		}
+		//QB
+		let i = 20;
+		while (i < 26){
+			let j = 24;
+			while (j < 30){
+				let map8[i+(j*45)] = 5;
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		//soft around QB
+		let i = 18;
+		while (i < 28){
+			let map8[22*45+i] = 3;
+			let map8[23*45+i] = 3;
+			let i = i + 1;
+		}
+		let i = 24;
+		while (i < 30){
+			let map8[i*45+18] = 3;
+			let map8[i*45+19] = 3;
+			let map8[i*45+26] = 3;
+			let map8[i*45+27] = 3;
+			let i = i + 1;
+		}
 		return this;
+	}
+	
+	method void debug_draw(){
+		var int i, j;
+		var Image soft;
+		let soft = Album.get_soft();
+		let i = 0;
+		while (i < 30){
+			let j = 0;
+			while (j < 45){
+				if (~(map8[i*45+j] = 0)){
+					do soft.draw(j*8, i*8, 0);
+				}
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		return;
 	}
 
 	method void draw(){
@@ -84,18 +127,23 @@ class Map{
 		var int i, j;
 		var boolean flag;
 		let flag = false;
+		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29)){
+			let flag = true;
+		}
 		let i = x1;
 		while (i < (x2+1)){
 			let j = y1;
 			while (j < (y2+1)){
-				let flag = flag | (~(map8[i+j*45]=0));
+				let flag = flag | (~(map8[j*45+i]=0));
 				let j = j + 1;
 			}
 			let i = i + 1;
 		}
-		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29)){
-			let flag = true;
-		}
 		return ~flag;
+	}
+
+	method void update(int x, int y, int type){
+		let map8[y*45+x] = type;
+		return;
 	}
 }
