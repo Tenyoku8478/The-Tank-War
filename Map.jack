@@ -142,8 +142,17 @@ class Map{
 		return ~flag;
 	}
 
-	method void update(int x, int y, int type){
-		let map8[y*45+x] = type;
+	method void update(int x1, int y1, int x2, int y2, int type){
+		var i, j;
+		let i = x1;
+		while (i < (x2+1)){
+			let j = y1;
+			while (j < (y2+1)){
+				let map8[j*45+i] = type;
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
 		return;
 	}
 }
