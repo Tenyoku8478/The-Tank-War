@@ -232,10 +232,10 @@ class Album{
 		let bullet = Image.new(8, 8, map);
 		return;
 	}
-	function Image get_tank1(){
-		return tank1;
-	}
-	function Image get_tank2(){
+	function Image get_tank(int type){
+		if (type = 1){
+			return tank1;
+		}
 		return tank2;
 	}
 	function Image get_soft(){

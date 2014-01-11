@@ -1,55 +1,73 @@
 class Bullet{
 	static Image img;
+	static Map map;
 	field int x, y, dir, v;
 
 	function void init(){
 		let img = Album.get_bullet();
 		return;
 	}
-
+	function void set_map(Map _map){
+		let map = _map;
+		return;
+	}
 	constructor Bullet new(int _x, int _y, int _dir, int _v){
 		let x = _x;
 		let y = _y;
 		let dir = _dir;
 		let v = _v;
-		do img.draw(x*8, y*8, dir);
 		return this;
 	}
 
-	method boolean moveBullet(Map map){
+	method boolean move(){
 		var int type;
-		do Image.clear(x*8, y*8, x*8+8, y*8+8);
+		let type = map.peek(x, y);
+		if(~((type = 1)|(type = 2))) {
+			do Image.clear(x*8, y*8, x*8+7, y*8+7);
+		}
 		if (dir = 0){
 			if (~(y-v < 0)){
 				let y = y - v;
+			}
+			else{
+				return false;
 			}
 		}
 		if (dir = 1){
 			if (x+v < 45){
 				let x = x + v;
 			}
+			else{
+				return false;
+			}
 		}
 		if (dir = 2){
 			if (y+v < 30){
 				let y = y + v;
+			}
+			else{
+				return false;
 			}
 		}
 		if (dir = 3){
 			if (~(x-v < 0)){
 				let x = x - v;
 			}
+			else{
+				return false;
+			}
 		}
 		let type = map.peek(x, y);
 		if (type = 0){
 			do img.draw(x*8, y*8, dir);
-			return false;
+			return true;
 		}
 		if ((type = 1) | (type = 2)){
 		}
 		if (type = 3){
 			do map.update(x, y, x, y, 0);
 		}
-		return true;
+		return false;
 	}
 
 }

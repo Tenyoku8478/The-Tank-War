@@ -1,0 +1,75 @@
+class Game{
+	static Map map;
+	static List bullet_list, tank_list, AI_list;
+	static Player player;
+
+	function void init(){
+		var AI ai;
+        var Tank tank;
+		do Album.init();
+		do Book.init();
+        do Tank.init();
+		do Bullet.init();
+        do Rand.reset(71, 22);
+        do Image.set_origin(12, 8);
+		let map = Book.get_map(1);
+		let tank_list = map.get_tank_list();
+		let bullet_list = List.new();
+		let AI_list = List.new();
+		do map.draw();
+		do Tank.set_map(map);
+		do Bullet.set_map(map);
+		do tank_list.reset();
+		while (~tank_list.end()){
+			let tank = tank_list.get();
+			if (tank.get_type() = 1){
+				let player = Player.new(tank);
+			}
+			else{
+				let ai = AI.new(tank);
+				do AI_list.insert(ai);
+			}
+			do tank_list.next();
+		}
+		return;
+	}
+	function void add_bullet(Bullet bullet){
+		do bullet_list.insert(bullet);
+		return;
+	}
+
+	function void run(){
+		var AI ai;
+		var Bullet bullet;
+		while(true){
+            do player.play();
+			do AI_list.reset();
+			while (~AI_list.end()){
+				let ai = AI_list.get();
+				do ai.play();
+				do AI_list.next();
+			}
+			do bullet_list.reset();
+			while (~bullet_list.end()){
+				let bullet = bullet_list.get();
+				if (~bullet.move()){
+					do bullet_list.delete();
+				}
+				else {
+					do bullet_list.next();
+				}
+			}
+			do bullet_list.reset();
+			while (~bullet_list.end()){
+				let bullet = bullet_list.get();
+				if (~bullet.move()){
+					do bullet_list.delete();
+				}
+				else {
+					do bullet_list.next();
+				}
+			}
+        }
+		return;
+	}
+}

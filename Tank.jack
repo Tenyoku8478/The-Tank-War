@@ -7,16 +7,15 @@ class Tank
     field int off_x, off_y;
     field int x, y, dir, type;
 
-    constructor Tank new(int _type, int _x, int _y, int _dir, int _img)
+    constructor Tank new(int _type, int _x, int _y, int _dir)
     {
         let type = _type;
-        let x = _x;
-        let y = _y;
+        let x = _x*3;
+        let y = _y*3;
         let off_x = x*8;
         let off_y = y*8;
         let dir = _dir;
-        let img = _img;
-        do img.draw(off_x, off_y, dir);
+        let img = Album.get_tank(type);
         return this;
     }
 
@@ -54,6 +53,24 @@ class Tank
         let map = _map;
         return;
     }
+
+	method void shoot(){
+		var Bullet bullet;
+		if (dir = 0){
+			let bullet = Bullet.new(x+1, y, dir, 1);
+		}
+		if (dir = 1){
+			let bullet = Bullet.new(x+2, y+1, dir, 1);
+		}
+		if (dir = 2){
+			let bullet = Bullet.new(x+1, y+2, dir, 1);
+		}
+		if (dir = 3){
+			let bullet = Bullet.new(x, y+1, dir, 1);
+		}
+		do Game.add_bullet(bullet);
+		return;
+	}
 
     method boolean move(int _dir)
     {
@@ -97,6 +114,9 @@ class Tank
         }
         return true;
     }
+	method int get_type(){
+		return type;
+	}
     method void attacked(int _x, int _y)
     {
         return;

@@ -15,7 +15,8 @@ class Player
         if(key=131) { do tank.move(0); }
         else{if(key=132) { do tank.move(1); }
         else{if(key=133) { do tank.move(2); }
-        else{if(key=130) { do tank.move(3); }}}}
+        else{if(key=130) { do tank.move(3); }
+        else{if(key=32) { do tank.shoot(); }}}}}
         return;
     }
 }
