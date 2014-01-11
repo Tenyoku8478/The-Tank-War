@@ -2,7 +2,9 @@ class Main{
 	function void main(){
         var Tank tank;
         var AI ai1, ai2, ai3;
+        var Player player;
 		var Map map;
+        var int key;
 
 		do Album.init();
 		do Book.init();
@@ -14,15 +16,15 @@ class Main{
         do Tank.set_map(map);
 
         let tank = Tank.new(1, 0, 0, 2, Album.get_tank1());
-        let ai1 = AI.new(tank, 2);
+        let player = Player.new(tank);
         let tank = Tank.new(2, 21, 3, 2, Album.get_tank2());
-        let ai2 = AI.new(tank, 2);
+        let ai2 = AI.new(tank);
         let tank = Tank.new(2, 42, 0, 2, Album.get_tank2());
-        let ai3 = AI.new(tank, 2);
+        let ai3 = AI.new(tank);
         do Rand.reset(71, 22);
         while(true)
         {
-            do ai1.play();
+            do player.play();
             do ai2.play();
             do ai3.play();
         }
