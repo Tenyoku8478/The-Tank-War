@@ -1,10 +1,12 @@
 class List{
     field Node head, pre, ptr;
+    field int num;
 
 	constructor List new(){
         let head = 0;
         let pre = 0;
         let ptr = 0;
+        let num = 0;
         return this;
     }
     method void reset()
@@ -36,6 +38,7 @@ class List{
         var Node tmp;
         let tmp = Node.new(data, head);
         let head = tmp;
+        let num = num+1;
         return;
     }
     method void delete()
@@ -47,6 +50,15 @@ class List{
         let tmp = ptr;
         let ptr = ptr.get_next();
         do Memory.deAlloc(tmp);
+        let num = num-1;
+        return;
+    }
+    method void print()
+    {
+        do Output.moveCursor(0, 50);
+        do Output.printString("      ");
+        do Output.moveCursor(0, 50);
+        do Output.printInt(num);
         return;
     }
 }

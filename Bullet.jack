@@ -21,52 +21,42 @@ class Bullet{
 
 	method boolean move(){
 		var int type;
+        var boolean flag;
 		let type = map.peek(x, y);
 		if(~((type = 1)|(type = 2))) {
 			do Image.clear(x*8, y*8, x*8+7, y*8+7);
 		}
-		if (dir = 0){
-			if (~(y-v < 0)){
-				let y = y - v;
-			}
-			else{
-				return false;
-			}
+        let flag = false;
+		if ((dir = 0)&(y-v > -1)){
+            let y = y - v;
+            let flag = true;
 		}
-		if (dir = 1){
-			if (x+v < 45){
-				let x = x + v;
-			}
-			else{
-				return false;
-			}
+		else{if ((dir = 1)&(x+v < 45)){
+            let x = x + v;
+            let flag = true;
 		}
-		if (dir = 2){
-			if (y+v < 30){
-				let y = y + v;
-			}
-			else{
-				return false;
-			}
+		else{if ((dir = 2)&(y+v < 30)){
+            let y = y + v;
+            let flag = true;
 		}
-		if (dir = 3){
-			if (~(x-v < 0)){
-				let x = x - v;
-			}
-			else{
-				return false;
-			}
-		}
-		let type = map.peek(x, y);
-		if (type = 0){
-			do img.draw(x*8, y*8, dir);
-			return true;
-		}
-		if ((type = 1) | (type = 2)){
-		}
-		if (type = 3){
-			do map.update(x, y, x, y, 0);
-		}
+		else{if ((dir = 3)&(x-v > -1)){
+            let x = x - v;
+            let flag = true;
+		}}}}
+
+        if(flag){
+            let type = map.peek(x, y);
+            if (type = 0){
+                do img.draw(x*8, y*8, dir);
+                return true;
+            }
+            if ((type = 1) | (type = 2)){
+            }
+            if (type = 3){
+                do map.update(x, y, x, y, 0);
+            }
+        }
+        do Memory.deAlloc(this);
 		return false;
 	}
 

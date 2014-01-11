@@ -6,7 +6,7 @@ class AI
     constructor AI new(Tank _tank)
     {
         let tank = _tank;
-        let now_dir = Rand.rand();
+        let now_dir = Rand.rand()&3;
         return this;
     }
 

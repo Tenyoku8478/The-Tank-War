@@ -76,29 +76,21 @@ function update(){
         });
     });
     $('#code').val(JSON.stringify(map));
-    /*var res = $('#res');
+    var res = $('#res');
     res.html('');
-    var ind = 0, k = 0, tmp=1;
+    var k;
     for(var i=0; i<row; ++i)
     {
         for(var j=0; j<col; ++j)
         {
-            if(map[i*col+j] == true) k+=tmp;
-            tmp+=tmp;
-            if(tmp == 65536)
-            {
-                if(k >= 32768) k -= 65536;
-                res.append('let map['+ind+'] = '+k+';<br />');
-                ind += 1;
-                k = 0, tmp = 1;
-            }
+            if(map[i*col+j] == ' ') k=0;
+            if(map[i*col+j] == 'I') k=1;
+            if(map[i*col+j] == 'E') k=2;
+            if(map[i*col+j] == 'S') k=3;
+            if(map[i*col+j] == 'H') k=4;
+            res.append('let map['+(i*col+j)+'] = '+k+';<br />');
         }
     }
-    if(tmp!=1)
-    {
-        if(k >= 32768) k -= 65536;
-        res.append('let map['+ind+'] = '+k+';<br />');
-    }*/
 }
 </script>
 </body>

@@ -1,6 +1,7 @@
 class Main{
 	function void main(){
 		do Game.init();
+		do Game.ready(1);
 		do Game.run();
 		return;
 	}
