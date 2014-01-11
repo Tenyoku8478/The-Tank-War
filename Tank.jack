@@ -10,8 +10,8 @@ class Tank
     {
         let x = _x;
         let y = _y;
-        let off_x = x*8+12;
-        let off_y = y*8+8;
+        let off_x = x*8;
+        let off_y = y*8;
         let dir = _dir;
         let img = _img;
         do img.draw(off_x, off_y, dir);

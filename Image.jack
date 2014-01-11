@@ -1,5 +1,7 @@
 class Image
 {
+    static int off_x, off_y;
+
     field int _width, _height;
     field Array _map;
 
@@ -9,6 +11,11 @@ class Image
         let _height = height;
         let _map = map;
         return this;
+    }
+    function set_orgin(int x, int y)
+    {
+        off_x = x;
+        off_y = y;
     }
     method int _turn_x(int x, int y, int dir)
     {
@@ -45,7 +52,7 @@ class Image
                 let dy = _turn_y(j, i, dir);
                 if((x+dx<512)&(y+dy<256))
                 {
-                    do Screen.drawPixel(x+dx, y+dy);
+                    do Screen.drawPixel(x+dx+off_x, y+dy+off_y);
                 }
                 if(k < 0) //已經畫完最高位
                 {
