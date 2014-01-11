@@ -61,6 +61,24 @@ class Map{
 			let row = row + 1;
 		}
 		do QB.draw(160, 200, 0);
+		let i = 0;
+		while (i < 7){
+			do soft.draw(144+(i*8), 184, 0);
+			do soft.draw(144+(i*8), 192, 0);
+			let i = i + 1;
+		}
+		let i = 0;
+		while (i < 5){
+			do soft.draw(144, 200+(i*8), 0);
+			do soft.draw(152, 200+(i*8), 0);
+			let i = i + 1;
+		}
+		let i = 0;
+		while (i < 5){
+			do soft.draw(200, 200+(i*8), 0);
+			do soft.draw(208, 200+(i*8), 0);
+			let i = i + 1;
+		}
 		return;
 	}
 }
