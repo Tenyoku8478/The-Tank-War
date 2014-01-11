@@ -36,10 +36,10 @@ class Map{
 		while (row < 10){
 			let col = 0;
 			while (col < 15){
-				if (_map[row*15+col] = 73){ //I
+				if (_map[row*15+col] = 1){ //I
 					do tank1.draw(col*24, row*24, 0);
 				}
-				if (_map[row*15+col] = 83){ //Soft
+				if (_map[row*15+col] = 3){ //Soft
 					let i = 0;
 					while (i < 3){
 						let j = 0;
@@ -50,10 +50,10 @@ class Map{
 						let i = i + 1;
 					}
 				}
-				if (_map[row*15+col] = 72){ //Hard
+				if (_map[row*15+col] = 4){ //Hard
 					do hard.draw(col*24, row*24, 0);
 				}
-				if (_map[row*15+col] = 69){ //Enemy
+				if (_map[row*15+col] = 2){ //Enemy
 					do tank2.draw(col*24, row*24, 0);
 				}
 				let col = col + 1;
