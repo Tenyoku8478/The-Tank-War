@@ -5,11 +5,13 @@ class Main{
         var Array list;
 		var Board board;
 
+		do Album.init();
+		do Cheat.init();
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "level";
         let list[2] = "Exit";
-        let main_menu = Menu.new(10, 25 , 3, list);
+        let main_menu = Menu.new(15, 29, 3, list);
 		do main_menu.add_cheat("NOCD");
 		do main_menu.add_cheat("ACHIN");
 		do main_menu.add_cheat("XDDD");
@@ -18,8 +20,7 @@ class Main{
         let list[0] = "level 1";
         let list[1] = "level 2";
         let list[2] = "level 3";
-        let level_menu = Menu.new(10, 25 , 3, list);
-		do Cheat.init();
+        let level_menu = Menu.new(15, 28, 3, list);
 		do Board.set_origin(16, 8);
 		let board = Album.get_board();
 		do board.draw();
@@ -34,7 +35,7 @@ class Main{
                 if(~(level=0)){
                     while((status = 1) & (level < 4)){
 						do Screen.clearScreen();
-                        do Output.moveCursor(12, 25);
+                        do Output.moveCursor(12, 28);
                         do Output.printString(list[level-1]);
                         do Sys.wait(1500);
                         do Screen.clearScreen();
@@ -59,21 +60,11 @@ class Main{
 					do board.draw();
                 }
             }
-			if (input = 2){
-				return;
-			}
-            if (input = 3){ //JIZZ
-                do Cheat.set_penetrate();
-            }
-			if (input = 4){ //XDDD
-				do Cheat.set_seperate();
-			}
-			if (input = 5){ //ACHIN
-				do Cheat.set_triple();
-			}
-			if (input = 6){ //NOCD
-				do Cheat.set_nocd();
-			}
+			if (input = 2){ return; }
+            if (input = 3){ do Cheat.set_penetrate(); } //JIZZ
+			if (input = 4){ do Cheat.set_seperate(); } //XDDD
+			if (input = 5){ do Cheat.set_triple(); } //ACHIN
+			if (input = 6){ do Cheat.set_nocd(); } //NOCD
         }
 		return;
 	}

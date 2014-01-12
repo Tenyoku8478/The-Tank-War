@@ -5,7 +5,6 @@ class Game{
 	static int status, enemy, total_enemy, live, score;
 
 	function void init(){
-		do Album.init();
 		do Tank.init();
 		do Bullet.init();
 		do Bomb.init();
