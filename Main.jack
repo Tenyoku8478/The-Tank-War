@@ -30,7 +30,7 @@ class Main{
                     do Output.printString(list[level-1]);
 					do Sys.wait(1500);
                     do Screen.clearScreen();
-                    do Game.ready(level);
+                    do Game.ready(level, true, false, false);
 					let status = Game.run();
                     do Game.close();
                     do Screen.clearScreen();
@@ -38,13 +38,13 @@ class Main{
                 }
             }
 			if (status = 1){
-                    do Game.ready(4);
+                    do Game.ready(4, false, false, false);
 					let status = Game.run();
                     do Game.close();
                     do Screen.clearScreen();
 			}
 			if (status = -1){
-                    do Game.ready(5);
+                    do Game.ready(5, false, false, false);
 					let status = Game.run();
                     do Game.close();
                     do Screen.clearScreen();

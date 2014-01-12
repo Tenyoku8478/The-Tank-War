@@ -63,16 +63,16 @@ class Tank
 	method void shoot(){
 		var Bullet bullet;
 		if (dir = 0){
-			let bullet = Bullet.new(x+1, y, dir, 1);
+			let bullet = Bullet.new(x+1, y, dir, type);
 		}
 		if (dir = 1){
-			let bullet = Bullet.new(x+2, y+1, dir, 1);
+			let bullet = Bullet.new(x+2, y+1, dir, type);
 		}
 		if (dir = 2){
-			let bullet = Bullet.new(x+1, y+2, dir, 1);
+			let bullet = Bullet.new(x+1, y+2, dir, type);
 		}
 		if (dir = 3){
-			let bullet = Bullet.new(x, y+1, dir, 1);
+			let bullet = Bullet.new(x, y+1, dir, type);
 		}
 		do Game.add_bullet(bullet);
 		return;

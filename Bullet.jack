@@ -1,7 +1,7 @@
 class Bullet{
 	static Image img;
 	static Map map;
-	field int x, y, dir, v;
+	field int x, y, dir, owner;
 
 	function void init(){
 		let img = Album.get_bullet();
@@ -11,11 +11,11 @@ class Bullet{
 		let map = _map;
 		return;
 	}
-	constructor Bullet new(int _x, int _y, int _dir, int _v){
+	constructor Bullet new(int _x, int _y, int _dir, int _owner){
 		let x = _x;
 		let y = _y;
 		let dir = _dir;
-		let v = _v;
+		let owner = _owner;
 		return this;
 	}
 
@@ -27,20 +27,20 @@ class Bullet{
 			do Image.clear(x*8, y*8, x*8+7, y*8+7);
 		}
         let flag = false;
-		if ((dir = 0)&(y-v > -1)){
-            let y = y - v;
+		if ((dir = 0)&(y-1 > -1)){
+            let y = y - 1;
             let flag = true;
 		}
-		else{if ((dir = 1)&(x+v < 45)){
-            let x = x + v;
+		else{if ((dir = 1)&(x+1 < 45)){
+            let x = x + 1;
             let flag = true;
 		}
-		else{if ((dir = 2)&(y+v < 30)){
-            let y = y + v;
+		else{if ((dir = 2)&(y+1 < 30)){
+            let y = y + 1;
             let flag = true;
 		}
-		else{if ((dir = 3)&(x-v > -1)){
-            let x = x - v;
+		else{if ((dir = 3)&(x-1 > -1)){
+            let x = x - 1;
             let flag = true;
 		}}}}
 
@@ -58,6 +58,9 @@ class Bullet{
             }
 			if (type = 5){
 				do Game.over();
+			}
+			if (~(type = 4) & (owner = 1) & (Game.get_penetrate() = true)){
+				return true;
 			}
         }
         do Memory.deAlloc(this);
