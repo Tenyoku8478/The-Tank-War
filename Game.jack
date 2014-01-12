@@ -2,7 +2,7 @@ class Game{
 	static Map map;
 	static List bullet_list, tank_list, AI_list, bomb_list;
 	static Player player;
-	static int status, enemy, total_enemy;
+	static int status, enemy, total_enemy, live, score;
 
 	function void init(){
 		do Album.init();
@@ -12,6 +12,8 @@ class Game{
 		do Statement.init();
 		do Rand.reset(71, 22);
 		do Image.set_origin(12, 8);
+		let live = 5;
+		let score = 0;
 		return;
 	}
 	function void ready(int level) {
@@ -32,6 +34,7 @@ class Game{
 		while (~tank_list.end()){
 			let tank = tank_list.get();
 			if (tank.get_type() = 1){
+				do tank.set_live(live);
 				let player = Player.new(tank);
 			}
 			else{
@@ -42,10 +45,10 @@ class Game{
 			do tank_list.next();
 		}
 		let total_enemy = enemy;
-		do Statement.update(5, enemy, 0);
+		do Statement.update(live, enemy, score);
 		return;
 	}
-	function boolean run(){
+	function int run(){
 		var AI ai;
 		var Bullet bullet;
 		var Bomb bomb;
@@ -83,7 +86,7 @@ class Game{
 				}
 			}
 		}
-        return status=1;
+        return status;
 	}
 	function void close() {
 		var AI ai;
@@ -136,28 +139,36 @@ class Game{
 	}
 	function void attack_tank(int x, int y){
 		var Tank tank;
-		var int type, enemy_live, player_live;
-		let enemy_live = 0;
+		var int tank_type, attack_type;
 		do tank_list.reset();
 		while(~tank_list.end())
 		{
 			let tank = tank_list.get();
-			let type = tank.attacked(x, y);
-			if(type = 1){ do Game.over(); }
-			else{if(type = 2)
-				{
-					let enemy = enemy-1;
-					if(enemy=0) { let status = 1; }
+			let attack_type = tank.attacked(x, y);
+			let tank_type = tank.get_type();
+			if (tank_type = 1){
+				if (attack_type = 2){
+					do Game.over();
+				}
+				else{ if (attack_type = 1){
+					let live = live - 1;
 				}}
-			if (tank.get_type() = 2){
-				let enemy_live = enemy_live + tank.get_live();
 			}
 			else{
-				let player_live = tank.get_live();
+				if (attack_type = 2){
+					let enemy = enemy - 1;
+					let score = score + 600;
+					if (enemy = 0){
+						let status = 1;
+					}
+				}
+				else{ if (attack_type = 1){
+					let score = score + 100;
+				}}
 			}
 			do tank_list.next();
 		}
-		do Statement.update(player_live, enemy, ((10*total_enemy)-(5*enemy)-enemy_live)*100);
+		do Statement.update(live, enemy, score);
 		return;
 	}
 }

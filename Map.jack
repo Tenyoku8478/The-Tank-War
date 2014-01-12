@@ -26,34 +26,36 @@ class Map{
 			}
 			let row = row + 1;
 		}
-		//QB
-		let i = 20;
-		while (i < 25){
-			let j = 25;
-			while (j < 30){
-				let map8[i+(j*45)] = 5;
-				let j = j + 1;
+		if (map24[127] = 0){
+			//QB
+			let i = 20;
+			while (i < 25){
+				let j = 25;
+				while (j < 30){
+					let map8[i+(j*45)] = 5;
+					let j = j + 1;
+				}
+				let i = i + 1;
 			}
-			let i = i + 1;
-		}
-		//soft around QB
-		let i = 18;
-		while (i < 27){
-			let map8[23*45+i] = 3;
-			let map8[24*45+i] = 3;
-			let i = i + 1;
-		}
-		let i = 25;
-		while (i < 30){
-			let map8[i*45+18] = 3;
-			let map8[i*45+19] = 3;
-			let map8[i*45+25] = 3;
-			let map8[i*45+26] = 3;
-			let i = i + 1;
+			//soft around QB
+			let i = 18;
+			while (i < 27){
+				let map8[23*45+i] = 3;
+				let map8[24*45+i] = 3;
+				let i = i + 1;
+			}
+			let i = 25;
+			while (i < 30){
+				let map8[i*45+18] = 3;
+				let map8[i*45+19] = 3;
+				let map8[i*45+25] = 3;
+				let map8[i*45+26] = 3;
+				let i = i + 1;
+			}
 		}
 		return this;
 	}
-	
+
 	method void debug_draw(){
 		var int i, j;
 		var Image soft;
@@ -85,8 +87,8 @@ class Map{
 			let col = 0;
 			while (col < 15){
 				if (map24[row*15+col] = 0){
-                    do Image.clear(col*24, row*24, col*24+23, row*24+23);
-                }
+					do Image.clear(col*24, row*24, col*24+23, row*24+23);
+				}
 				if (map24[row*15+col] = 1){
 					do tank1.draw(col*24, row*24, 0);
 				}
@@ -111,24 +113,26 @@ class Map{
 			}
 			let row = row + 1;
 		}
-		do QB.draw(160, 200, 0);
-		let i = 0;
-		while (i < 9){
-			do soft.draw(144+(i*8), 184, 0);
-			do soft.draw(144+(i*8), 192, 0);
-			let i = i + 1;
-		}
-		let i = 0;
-		while (i < 5){
-			do soft.draw(144, 200+(i*8), 0);
-			do soft.draw(152, 200+(i*8), 0);
-			let i = i + 1;
-		}
-		let i = 0;
-		while (i < 5){
-			do soft.draw(200, 200+(i*8), 0);
-			do soft.draw(208, 200+(i*8), 0);
-			let i = i + 1;
+		if (map24[127] = 0){
+			do QB.draw(160, 200, 0);
+			let i = 0;
+			while (i < 9){
+				do soft.draw(144+(i*8), 184, 0);
+				do soft.draw(144+(i*8), 192, 0);
+				let i = i + 1;
+			}
+			let i = 0;
+			while (i < 5){
+				do soft.draw(144, 200+(i*8), 0);
+				do soft.draw(152, 200+(i*8), 0);
+				let i = i + 1;
+			}
+			let i = 0;
+			while (i < 5){
+				do soft.draw(200, 200+(i*8), 0);
+				do soft.draw(208, 200+(i*8), 0);
+				let i = i + 1;
+			}
 		}
 		return;
 	}
@@ -175,10 +179,10 @@ class Map{
 	method List get_tank_list(){
 		return tank_list;
 	}
-    method void destroy(){
-        do Memory.deAlloc(map8);
-        do Memory.deAlloc(map24);
-        return;
-    }
+	method void destroy(){
+		do Memory.deAlloc(map8);
+		do Memory.deAlloc(map24);
+		return;
+	}
 
 }

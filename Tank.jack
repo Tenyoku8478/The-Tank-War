@@ -21,6 +21,10 @@ class Tank
         return this;
     }
 
+	method void set_live(int _live){
+		let live = _live;
+		return;
+	}
     function void init()
     {
         let x_l = Array.new(4);
@@ -124,7 +128,8 @@ class Tank
         if((live>0)&(_x>(x-1))&(_x<(x+3))&(_y>(y-1))&(_y<(y+3)))
         {
             let live = live - 1;
-            if(live = 0) { do _die(); return type;}
+            if(live = 0) { do _die(); return 2;}
+			return 1;
         }
         return 0;
     }
