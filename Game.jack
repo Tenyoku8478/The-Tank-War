@@ -1,30 +1,31 @@
 class Game{
 	static Map map;
-	static List bullet_list, tank_list, AI_list;
+	static List bullet_list, tank_list, AI_list, bomb_list;
 	static Player player;
-    static int status, enemy, total_enemy;
+	static int status, enemy, total_enemy;
 
 	function void init(){
 		do Album.init();
-		do Book.init();
-        do Tank.init();
+		do Tank.init();
 		do Bullet.init();
+		do Book.init();
+		do Bomb.init();
 		do Statement.init();
-        do Rand.reset(71, 22);
-        do Image.set_origin(12, 8);
+		do Rand.reset(71, 22);
+		do Image.set_origin(12, 8);
 		return;
 	}
-    function void ready(int level) {
+	function void ready(int level) {
 		var AI ai;
-        var Tank tank;
+		var Tank tank;
 		let map = Book.get_map(level);
 		let tank_list = map.get_tank_list();
 		let bullet_list = List.new();
 		let AI_list = List.new();
-        let status = 0;
-        let enemy = 0;
-		do map.draw();
-		do Tank.set_map(map);
+		let bomb_list = List.new();
+		let status = 0;
+		let enemy = 0;
+		do map.draw(); do Tank.set_map(map);
 		do Bullet.set_map(map);
 		do tank_list.reset();
 		while (~tank_list.end()){
@@ -33,7 +34,7 @@ class Game{
 				let player = Player.new(tank);
 			}
 			else{
-                let enemy = enemy+1;
+				let enemy = enemy+1;
 				let ai = AI.new(tank);
 				do AI_list.insert(ai);
 			}
@@ -41,44 +42,55 @@ class Game{
 		}
 		let total_enemy = enemy;
 		do Statement.update(5, enemy, 0);
-        return;
-    }
+		return;
+	}
 	function void run(){
 		var AI ai;
 		var Bullet bullet;
-        var int i;
+		var Bomb bomb;
+		var int i;
 		while(status=0){
-            do player.play();
+			do player.play();
 			do AI_list.reset();
 			while (~AI_list.end()){
 				let ai = AI_list.get();
 				do ai.play();
 				do AI_list.next();
 			}
-            let i = 0;
-            while(i<2){
-                do bullet_list.reset();
-                while (~bullet_list.end()){
-                    let bullet = bullet_list.get();
-                    if (~bullet.move()){
-                        do bullet_list.delete();
-                    }
-                    else {
-                        do bullet_list.next();
-                    }
-                }
-                let i = i+1;
-            }
-        }
-        do Output.moveCursor(10, 22);
-        if(status=1)
-        {
-            do Output.printString("win!");
-        }
-        else
-        {
-            do Output.printString("lose!");
-        }
+			let i = 0;
+			while(i<2){
+				do bullet_list.reset();
+				while (~bullet_list.end()){
+					let bullet = bullet_list.get();
+					if (~bullet.move()){
+						do bullet_list.delete();
+					}
+					else {
+						do bullet_list.next();
+					}
+				}
+				let i = i+1;
+			}
+			do bomb_list.reset();
+			while (~bomb_list.end()){
+				let bomb = bomb_list.get();
+				if (~bomb.explode()){
+					do bomb_list.delete();
+				}
+				else {
+					do bomb_list.next();
+				}
+			}
+		}
+		do Output.moveCursor(10, 22);
+		if(status=1)
+		{
+			do Output.printString("win!");
+		}
+		else
+		{
+			do Output.printString("lose!");
+		}
 		return;
 	}
 
@@ -86,34 +98,38 @@ class Game{
 		do bullet_list.insert(bullet);
 		return;
 	}
+	function void add_bomb(Bomb bomb){
+		do bomb_list.insert(bomb);
+		return;
+	}
 	function void over(){
 		let status = -1;
 		return;
 	}
-    function void attack_tank(int x, int y){
-        var Tank tank;
-        var int type, enemy_live, player_live;
+	function void attack_tank(int x, int y){
+		var Tank tank;
+		var int type, enemy_live, player_live;
 		let enemy_live = 0;
-        do tank_list.reset();
-        while(~tank_list.end())
-        {
-            let tank = tank_list.get();
-            let type = tank.attacked(x, y);
-            if(type = 1){ do Game.over(); }
-            else{if(type = 2)
-            {
-                let enemy = enemy-1;
-                if(enemy=0) { let status = 1; }
-            }}
+		do tank_list.reset();
+		while(~tank_list.end())
+		{
+			let tank = tank_list.get();
+			let type = tank.attacked(x, y);
+			if(type = 1){ do Game.over(); }
+			else{if(type = 2)
+				{
+					let enemy = enemy-1;
+					if(enemy=0) { let status = 1; }
+				}}
 			if (tank.get_type() = 2){
 				let enemy_live = enemy_live + tank.get_live();
 			}
 			else{
 				let player_live = tank.get_live();
 			}
-            do tank_list.next();
-        }
+			do tank_list.next();
+		}
 		do Statement.update(player_live, enemy, ((10*total_enemy)-(5*enemy)-enemy_live)*100);
-        return;
-    }
+		return;
+	}
 }

@@ -131,6 +131,7 @@ class Tank
     method void _die()
     {
         do map.update(x, y, x+2, y+2, 0);
+		do Game.add_bomb(Bomb.new(x, y));
         return;
     }
 }

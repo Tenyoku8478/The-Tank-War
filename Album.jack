@@ -1,5 +1,5 @@
 class Album{
-	static Image tank1, tank2, soft, hard, QB, bullet;
+	static Image tank1, tank2, soft, hard, QB, bullet, bomb1, bomb2, bomb3;
 	function void init(){
 		var Array map;
 		let map = Array.new(36);
@@ -230,6 +230,120 @@ class Album{
 		let map[2] = 15420;
 		let map[3] = 60;
 		let bullet = Image.new(8, 8, map);
+		let map = Array.new(36);
+		let map[0] = 0;
+		let map[1] = 0;
+		let map[2] = 0;
+		let map[3] = 0;
+		let map[4] = 0;
+		let map[5] = 0;
+		let map[6] = 0;
+		let map[7] = 0;
+		let map[8] = 0;
+		let map[9] = 16512;
+		let map[10] = 0;
+		let map[11] = 193;
+		let map[12] = 31616;
+		let map[13] = 0;
+		let map[14] = 79;
+		let map[15] = 8448;
+		let map[16] = 0;
+		let map[17] = 17;
+		let map[18] = 13696;
+		let map[19] = -32767-1;
+		let map[20] = 38;
+		let map[21] = 26720;
+		let map[22] = -16384;
+		let map[23] = 192;
+		let map[24] = 0;
+		let map[25] = 2;
+		let map[26] = 0;
+		let map[27] = 0;
+		let map[28] = 0;
+		let map[29] = 0;
+		let map[30] = 0;
+		let map[31] = 0;
+		let map[32] = 0;
+		let map[33] = 0;
+		let map[34] = 0;
+		let map[35] = 0;
+		let bomb1 = Image.new(24,24,map);
+		let map = Array.new(36);
+		let map[0] = 0;
+		let map[1] = 0;
+		let map[2] = 64;
+		let map[3] = 16392;
+		let map[4] = 0;
+		let map[5] = 64;
+		let map[6] = 8194;
+		let map[7] = 19468;
+		let map[8] = 1048;
+		let map[9] = 26816;
+		let map[10] = -16382;
+		let map[11] = 5965;
+		let map[12] = -31936;
+		let map[13] = 16495;
+		let map[14] = 1116;
+		let map[15] = 32352;
+		let map[16] = 8195;
+		let map[17] = 444;
+		let map[18] = -24840;
+		let map[19] = 15872;
+		let map[20] = 149;
+		let map[21] = -22272;
+		let map[22] = 1;
+		let map[23] = 893;
+		let map[24] = -14464;
+		let map[25] = -32767;
+		let map[26] = 514;
+		let map[27] = 896;
+		let map[28] = -32760;
+		let map[29] = 2049;
+		let map[30] = 140;
+		let map[31] = 2560;
+		let map[32] = 0;
+		let map[33] = 4;
+		let map[34] = 0;
+		let map[35] = 0;
+		let bomb2 = Image.new(24,24,map);
+		let map = Array.new(36);
+		let map[0] = 4;
+		let map[1] = -2036;
+		let map[2] = 1664;
+		let map[3] = -11472;
+		let map[4] = 24578;
+		let map[5] = 870;
+		let map[6] = 31840;
+		let map[7] = 28678;
+		let map[8] = 3089;
+		let map[9] = -6368;
+		let map[10] = 12296;
+		let map[11] = 6655;
+		let map[12] = -28880;
+		let map[13] = -17309;
+		let map[14] = -14401;
+		let map[15] = 26517;
+		let map[16] = -9434;
+		let map[17] = 13893;
+		let map[18] = 28596;
+		let map[19] = -29678;
+		let map[20] = 4795;
+		let map[21] = 7481;
+		let map[22] = 24602;
+		let map[23] = 6975;
+		let map[24] = -5024;
+		let map[25] = -24549;
+		let map[26] = 3009;
+		let map[27] = -30768;
+		let map[28] = -12272;
+		let map[29] = 5917;
+		let map[30] = -18320;
+		let map[31] = 14397;
+		let map[32] = 20704;
+		let map[33] = 16396;
+		let map[34] = 0;
+		let map[35] = 64;
+		let bomb3 = Image.new(24,24,map);
 		return;
 	}
 	function Image get_tank(int type){
@@ -249,5 +363,10 @@ class Album{
 	}
 	function Image get_bullet(){
 		return bullet;
+	}
+	function Image get_bomb(int n){
+		if (n = 1){ return bomb1;}
+		else{if (n = 2){ return bomb2;}
+		else{ return bomb3;}}
 	}
 }

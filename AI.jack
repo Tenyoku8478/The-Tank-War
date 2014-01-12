@@ -20,7 +20,7 @@ class AI
             }
             else
             {
-                if (Rand.rand()<17){
+                if (Rand.rand()<20){
                     do tank.shoot();
                 }
             }
