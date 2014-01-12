@@ -25,10 +25,15 @@ class Game{
 		let bomb_list = List.new();
 		let status = 0;
 		let enemy = 0;
+
+        do Tank.set_map(map);
+		do Bullet.set_map(map);
+
+        do Screen.clearScreen();
 		do Statement.draw_frame();
 		do Statement.display();
-		do map.draw(); do Tank.set_map(map);
-		do Bullet.set_map(map);
+		do map.draw();
+
 		do tank_list.reset();
 		while (~tank_list.end()){
 			let tank = tank_list.get();

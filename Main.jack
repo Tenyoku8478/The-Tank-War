@@ -7,6 +7,7 @@ class Main{
 
 		do Album.init();
 		do Cheat.init();
+
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "Level";
@@ -16,13 +17,16 @@ class Main{
 		do main_menu.add_cheat("ACHIN");
 		do main_menu.add_cheat("XDDD");
         do main_menu.add_cheat("JIZZ");
+
         let list = Array.new(3);
         let list[0] = "level 1";
         let list[1] = "level 2";
         let list[2] = "level 3";
         let level_menu = Menu.new(15, 29, 3, list);
+
 		let board = Album.get_board();
 		let board_qb = Album.get_board_qb();
+
         do Screen.clearScreen();
 		do board.draw(16, 8);
         do board_qb.draw(320, 130);
@@ -40,7 +44,6 @@ class Main{
                         do Output.moveCursor(12, 28);
                         do Output.printString(list[level-1]);
                         do Sys.wait(1500);
-                        do Screen.clearScreen();
                         do Game.ready(level);
                         let status = Game.run();
                         do Game.close();
@@ -48,13 +51,11 @@ class Main{
                     }
                     do Cheat.init();
                     if (status = 1){
-                            do Screen.clearScreen();
                             do Game.ready(4);
                             let status = Game.run();
                             do Game.close();
                     }
                     if (status = -1){
-                            do Screen.clearScreen();
                             do Game.ready(5);
                             let status = Game.run();
                             do Game.close();
