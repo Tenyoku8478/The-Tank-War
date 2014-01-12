@@ -21,7 +21,7 @@ class AI
             else
             {
                 if (Rand.rand()<20){
-                    do tank.shoot(dir);
+                    do tank.shoot(tank.get_dir());
                 }
             }
         }
