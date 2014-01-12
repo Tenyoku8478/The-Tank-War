@@ -26,17 +26,31 @@ class Menu
         }
         return this;
     }
+    function void _xor(int row, int col)
+    {
+        var int origin, i, tmp;
+        let origin = 16384+(row*352)+(col/2);
+        let i = 0;
+        while(i<352)
+        {
+            let tmp = Memory.peek(origin+i);
+            if(col&1=0) { let tmp = (-256&~tmp)|(255&tmp); }
+            else { let tmp = (-256&tmp)|(255&~tmp); }
+            do Memory.poke(origin+i, ~tmp);
+            let i = i+32;
+        }
+        return;
+    }
     /*
     method void _draw_select(boolean color)
     {
         do Screen.setColor(color);
-        do Screen.drawLine(col*8-2, (row+now+now)*11-2, col*8-2, (row+now+now+1)*11+2);
-        do Screen.drawLine((col+width)*8+1, (row+now+now)*11-2, (col+width)*8+1, (row+now+now+1)*11+2);
+        do Screen.drawLine(col*8-2, (row+now+now)*11-2, col*8-2, (row+now+now+1)*11+1);
+        do Screen.drawLine((col+width)*8+1, (row+now+now)*11-2, (col+width)*8+1, (row+now+now+1)*11+1);
         do Screen.drawLine(col*8-2, (row+now+now)*11-2, (col+width)*8+1, (row+now+now)*11-2);
-        do Screen.drawLine(col*8-2, (row+now+now+1)*11+2, (col+width)*8+1, (row+now+now+1)*11+2);
+        do Screen.drawLine(col*8-2, (row+now+now+1)*11+1, (col+width)*8+1, (row+now+now+1)*11+1);
         return;
     }
-    */
     method void _draw_select(boolean color)
     {
         var String str;
@@ -51,6 +65,19 @@ class Menu
         {
             do Output.printChar(32);
             do Output.printString(str);
+        }
+        return;
+    }*/
+    method void _draw_select(boolean color)
+    {
+        var String str;
+        var int j, w;
+        let str = list[now];
+        let j = 0;
+        while(j<str[0])
+        {
+            do Menu._xor(row+now+now,col+j);
+            let j = j+1;
         }
         return;
     }
