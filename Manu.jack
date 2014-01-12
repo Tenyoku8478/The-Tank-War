@@ -1,0 +1,74 @@
+class Manu
+{
+    field Array list;
+    field int now;
+    field int row, col, n;
+
+    constructor Manu new(int _row, int _col, int _n, Array _list)
+    {
+        let row = _row;
+        let col = _col;
+        let n = _n;
+        let now = 0;
+        let list = _list;
+        return this;
+    }
+    method void _draw_dot(boolean color)
+    {
+        var int x, y;
+        let x = col*8-10;
+        let y = (row+now+now)*11+5;
+        do Screen.setColor(color);
+        do Screen.drawCircle(x, y, 3);
+        return;
+    }
+    method char _input()
+    {
+        var char pre, in;
+        let in = 0;
+        while(in=0){let in = Keyboard.keyPressed();}
+        while(~(in=0))
+        {
+            let pre = in;
+            let in = Keyboard.keyPressed();
+        }
+        return pre;
+    }
+
+    method int run()
+    {
+        var int i;
+        var char c;
+        let i = 0;
+        while(i<n)
+        {
+            do Output.moveCursor(row+(i+i), col);
+            do Output.printString(list[i]);
+            let i = i+1;
+        }
+        do _draw_dot(1);
+        while(true)
+        {
+            let c = _input();
+            if((c = 131)&(now>0))
+            {
+                do _draw_dot(0);
+                let now = now-1;
+                do _draw_dot(1);
+            }
+            if((c = 133)&(now+1<n))
+            {
+                do _draw_dot(0);
+                let now = now+1;
+                do _draw_dot(1);
+            }
+            if((c = 32))
+            {
+                do Screen.setColor(0);
+                do Screen.clearScreen();
+                return now;
+            }
+        }
+        return now;
+    }
+}
