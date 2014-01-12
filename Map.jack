@@ -76,6 +76,8 @@ class Map{
 
 	method void draw(){
 		var int row, col, i, j;
+        var int row15, col15;
+        var int row24, col24;
 		var Image soft, hard, QB, tank1, tank2;
 		let tank1 = Album.get_tank(1);
 		let tank2 = Album.get_tank(2);
@@ -83,35 +85,43 @@ class Map{
 		let hard = Album.get_hard();
 		let QB = Album.get_QB();
 		let row = 0;
+        let row15 = 0;
+        let row24 = 0;
 		while (row < 10){
 			let col = 0;
+			let col15 = 0;
+			let col24 = 0;
 			while (col < 15){
-				if (map24[row*15+col] = 0){
-					do Image.clear(col*24, row*24, col*24+23, row*24+23);
+				if (map24[row15+col] = 0){
+					do Image.clear(col24, row24, col24+23, row24+23);
 				}
-				if (map24[row*15+col] = 1){
-					do tank1.draw(col*24, row*24, 0);
+				if (map24[row15+col] = 1){
+					do tank1.draw(col24, row24, 0);
 				}
-				if (map24[row*15+col] = 2){
-					do tank2.draw(col*24, row*24, 0);
+				if (map24[row15+col] = 2){
+					do tank2.draw(col24, row24, 0);
 				}
-				if (map24[row*15+col] = 3){ //Soft
+				if (map24[row15+col] = 3){ //Soft
 					let i = 0;
-					while (i < 3){
+					while (i < 24){
 						let j = 0;
-						while (j < 3){
-							do soft.draw(col*24+(i*8), row*24+(j*8), 0);
-							let j = j + 1;
+						while (j < 24){
+							do soft.draw(col24+i, row24+j, 0);
+							let j = j + 8;
 						}
-						let i = i + 1;
+						let i = i + 8;
 					}
 				}
-				if (map24[row*15+col] = 4){ //Hard
-					do hard.draw(col*24, row*24, 0);
+				if (map24[row15+col] = 4){ //Hard
+					do hard.draw(col24, row24, 0);
 				}
 				let col = col + 1;
+				let col15 = col15 + 15;
+				let col24 = col24 + 24;
 			}
 			let row = row + 1;
+			let row15 = row15 + 15;
+			let row24 = row24 + 24;
 		}
 		if (map24[127] = 0){
 			do QB.draw(160, 200, 0);

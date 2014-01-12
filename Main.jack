@@ -9,7 +9,7 @@ class Main{
 		do Cheat.init();
         let list = Array.new(3);
         let list[0] = "Start";
-        let list[1] = "level";
+        let list[1] = "Level";
         let list[2] = "Exit";
         let main_menu = Menu.new(15, 30, 3, list);
 		do main_menu.add_cheat("NOCD");
