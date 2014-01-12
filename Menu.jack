@@ -26,13 +26,13 @@ class Menu
         }
         return this;
     }
-    method void _draw_dot(boolean color)
+    method void _draw_select(boolean color)
     {
-        var int x, y;
-        let x = col*8-10;
-        let y = (row+now+now)*11+5;
         do Screen.setColor(color);
-        do Screen.drawCircle(x, y, 3);
+        do Screen.drawLine(col*8-2, (row+now+now)*11-2, col*8-2, (row+now+now+1)*11+2);
+        do Screen.drawLine((col+width)*8+1, (row+now+now)*11-2, (col+width)*8+1, (row+now+now+1)*11+2);
+        do Screen.drawLine(col*8-2, (row+now+now)*11-2, (col+width)*8+1, (row+now+now)*11-2);
+        do Screen.drawLine(col*8-2, (row+now+now+1)*11+2, (col+width)*8+1, (row+now+now+1)*11+2);
         return;
     }
     method char _input()
@@ -88,7 +88,7 @@ class Menu
             let i = i+1;
         }
         do _reset_cheat();
-        do _draw_dot(1);
+        do _draw_select(1);
         while(true)
         {
             let c = _input();
@@ -96,26 +96,28 @@ class Menu
             if(~(flag=-1)) {return flag;}
             if((c = 131)&(now>0))
             {
-                do _draw_dot(0);
+                do _draw_select(0);
                 let now = now-1;
-                do _draw_dot(1);
+                do _draw_select(1);
             }
             if((c = 133)&(now+1<n))
             {
-                do _draw_dot(0);
+                do _draw_select(0);
                 let now = now+1;
-                do _draw_dot(1);
+                do _draw_select(1);
             }
             if(c = 32) //Space key
             {
+                do _draw_select(0);
                 do Screen.setColor(false);
-                do Screen.drawRectangle(col*8-13, row*11, (col+width)*8-1, (row+n+n)*11-1);
+                do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
                 return now;
             }
             if(c = 81) //Q
             {
+                do _draw_select(0);
                 do Screen.setColor(false);
-                do Screen.drawRectangle(col*8-13, row*11, (col+width)*8-1, (row+n+n)*11-1);
+                do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
                 return -1;
             }
         }
