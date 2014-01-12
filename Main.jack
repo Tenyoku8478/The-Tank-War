@@ -1,28 +1,28 @@
 class Main{
 	function void main(){
         var int input;
-        var Manu main_manu, level_manu;
+        var Menu main_menu, level_menu;
         var Array list;
         var int level;
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "level";
         let list[2] = "Exit";
-        let main_manu = Manu.new(10, 25 , 3, list);
+        let main_menu = Menu.new(10, 25 , 3, list);
         let list = Array.new(3);
         let list[0] = "level 1";
         let list[1] = "level 2";
         let list[2] = "level 3";
-        let level_manu = Manu.new(10, 25 , 3, list);
+        let level_menu = Menu.new(10, 25 , 3, list);
         while(true)
         {
-            let input = main_manu.run();
+            let input = main_menu.run();
             if(input=0)
             {
                 do Output.moveCursor(10, 25);
                 do Output.printString("level 1");
-                do Screen.clearScreen();
                 do Sys.wait(500);
+                do Screen.clearScreen();
                 do Game.init();
                 do Game.ready(1);
                 do Game.run();
@@ -30,7 +30,7 @@ class Main{
             }
             if(input=1)
             {
-                let level = level_manu.run();
+                let level = level_menu.run();
                 do Game.init();
                 do Game.ready(level+1);
                 do Game.run();
