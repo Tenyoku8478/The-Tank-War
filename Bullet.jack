@@ -57,6 +57,7 @@ class Bullet{
                 do map.update(x, y, x, y, 0);
             }
 			if (type = 5){
+                do Game.add_bomb(Bomb.new(21, 27));
 				do Game.over();
 			}
 			if (~(type = 4) & (owner = 1) & (Cheat.get_penetrate() = true)){
