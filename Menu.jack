@@ -3,6 +3,7 @@ class Menu
     field Array list;
     field int now;
     field int row, col, n;
+    field List cheat_list;
 
     constructor Menu new(int _row, int _col, int _n, Array _list)
     {
@@ -11,6 +12,7 @@ class Menu
         let n = _n;
         let now = 0;
         let list = _list;
+        let cheat_list = List.new();
         return this;
     }
     method void _draw_dot(boolean color)
@@ -34,11 +36,39 @@ class Menu
         }
         return pre;
     }
+    method void _reset_cheat()
+    {
+        var CheatCode code;
+        do cheat_list.reset();
+        while(~cheat_list.end())
+        {
+            let code = cheat_list.get();
+            do code.reset();
+            do cheat_list.next();
+        }
+        return;
+    }
+    method int _check_cheat(char c)
+    {
+        var CheatCode code;
+        var int i;
+        let i = 0;
+        do cheat_list.reset();
+        while(~cheat_list.end())
+        {
+            let code = cheat_list.get();
+            if(code.complete(c)) { return n+i; }
+            let i = i+1;
+            do cheat_list.next();
+        }
+        return -1;
+    }
 
     method int run()
     {
         var int i;
         var char c;
+        var int flag;
         let i = 0;
         while(i<n)
         {
@@ -46,10 +76,13 @@ class Menu
             do Output.printString(list[i]);
             let i = i+1;
         }
+        do _reset_cheat();
         do _draw_dot(1);
         while(true)
         {
             let c = _input();
+            let flag = _check_cheat(c);
+            if(~(flag=-1)) {return flag;}
             if((c = 131)&(now>0))
             {
                 do _draw_dot(0);
@@ -62,13 +95,24 @@ class Menu
                 let now = now+1;
                 do _draw_dot(1);
             }
-            if((c = 32))
+            if(c = 32) //Space key
             {
                 do Screen.setColor(0);
                 do Screen.clearScreen();
                 return now;
             }
+            if(c = 81) //Q
+            {
+                do Screen.setColor(0);
+                do Screen.clearScreen();
+                return -1;
+            }
         }
         return now;
+    }
+    method void add_cheat(String code)
+    {
+        do cheat_list.insert(CheatCode.new(code));
+        return;
     }
 }
