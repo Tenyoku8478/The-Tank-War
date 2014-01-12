@@ -3,7 +3,7 @@ class Main{
         var int input, status, level;
         var Menu main_menu, level_menu;
         var Array list;
-		var Board board;
+		var Scalable board, board_qb;
 
 		do Album.init();
 		do Cheat.init();
@@ -21,9 +21,11 @@ class Main{
         let list[1] = "level 2";
         let list[2] = "level 3";
         let level_menu = Menu.new(15, 29, 3, list);
-		do Board.set_origin(16, 8);
 		let board = Album.get_board();
-		do board.draw();
+		let board_qb = Album.get_board_qb();
+        do Screen.clearScreen();
+		do board.draw(16, 8);
+        do board_qb.draw(320, 130);
         while(true)
         {
 			let status = 1;
@@ -57,7 +59,9 @@ class Main{
                             let status = Game.run();
                             do Game.close();
                     }
-					do board.draw();
+                    do Screen.clearScreen();
+                    do board.draw(16, 8);
+                    do board_qb.draw(320, 130);
                 }
             }
 			if (input = 2){ return; }
