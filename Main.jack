@@ -3,6 +3,8 @@ class Main{
         var int input, status, level;
         var Menu main_menu, level_menu;
         var Array list;
+        var Boolean penetrate;
+
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "level";
@@ -14,6 +16,8 @@ class Main{
         let list[1] = "level 2";
         let list[2] = "level 3";
         let level_menu = Menu.new(10, 25 , 3, list);
+
+        let penetrate = false;
         while(true)
         {
 			let status = 1;
@@ -28,7 +32,7 @@ class Main{
                         do Output.printString(list[level-1]);
                         do Sys.wait(1500);
                         do Screen.clearScreen();
-                        do Game.ready(level, true, false, false);
+                        do Game.ready(level, penetrate, false, false);
                         let status = Game.run();
                         do Game.close();
                         do Screen.clearScreen();
@@ -46,12 +50,14 @@ class Main{
                             do Game.close();
                             do Screen.clearScreen();
                     }
+                    let penetrate = false;
                 }
             }
 			if (input = 2){
 				return;
 			}
             if (input = 3){ //jizz
+                let penetrate = true;
             }
         }
 		return;
