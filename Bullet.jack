@@ -56,6 +56,9 @@ class Bullet{
             if (type = 3){
                 do map.update(x, y, x, y, 0);
             }
+			if (type = 5){
+				do Game.over();
+			}
         }
         do Memory.deAlloc(this);
 		return false;

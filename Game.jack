@@ -86,6 +86,10 @@ class Game{
 		do bullet_list.insert(bullet);
 		return;
 	}
+	function void over(){
+		let status = -1;
+		return;
+	}
     function void attack_tank(int x, int y){
         var Tank tank;
         var int type, enemy_live, player_live;
@@ -95,7 +99,7 @@ class Game{
         {
             let tank = tank_list.get();
             let type = tank.attacked(x, y);
-            if(type = 1){ let status = -1; }
+            if(type = 1){ do Game.over(); }
             else{if(type = 2)
             {
                 let enemy = enemy-1;
