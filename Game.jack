@@ -8,7 +8,6 @@ class Game{
 		do Album.init();
 		do Tank.init();
 		do Bullet.init();
-		do Book.init();
 		do Bomb.init();
 		do Statement.init();
 		do Rand.reset(71, 22);
@@ -25,6 +24,8 @@ class Game{
 		let bomb_list = List.new();
 		let status = 0;
 		let enemy = 0;
+		do Statement.draw_frame();
+		do Statement.display();
 		do map.draw(); do Tank.set_map(map);
 		do Bullet.set_map(map);
 		do tank_list.reset();
@@ -44,7 +45,7 @@ class Game{
 		do Statement.update(5, enemy, 0);
 		return;
 	}
-	function void run(){
+	function boolean run(){
 		var AI ai;
 		var Bullet bullet;
 		var Bomb bomb;
@@ -82,17 +83,44 @@ class Game{
 				}
 			}
 		}
-		do Output.moveCursor(10, 22);
-		if(status=1)
-		{
-			do Output.printString("win!");
-		}
-		else
-		{
-			do Output.printString("lose!");
-		}
-		return;
+        return status=1;
 	}
+	function void close() {
+		var AI ai;
+		var Bullet bullet;
+		var Tank tank;
+        var Bomb bomb;
+		do map.destroy();
+        do tank_list.reset();
+        while (~tank_list.end()){
+            let tank = tank_list.get();
+            do tank_list.delete();
+            do Memory.deAlloc(tank);
+        }
+        do Memory.deAlloc(tank_list);
+        do AI_list.reset();
+        while (~AI_list.end()){
+            let ai = AI_list.get();
+            do AI_list.delete();
+            do Memory.deAlloc(ai);
+        }
+        do Memory.deAlloc(AI_list);
+        do bullet_list.reset();
+        while (~bullet_list.end()){
+            let bullet = bullet_list.get();
+            do bullet_list.delete();
+            do Memory.deAlloc(bullet);
+        }
+        do Memory.deAlloc(bullet_list);
+        do bomb_list.reset();
+        while (~bomb_list.end()){
+            let bomb = bomb_list.get();
+            do bomb_list.delete();
+            do Memory.deAlloc(bomb);
+        }
+        do Memory.deAlloc(bomb_list);
+        return;
+    }
 
 	function void add_bullet(Bullet bullet){
 		do bullet_list.insert(bullet);

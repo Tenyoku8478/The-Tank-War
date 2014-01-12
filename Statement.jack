@@ -2,11 +2,9 @@ class Statement{
 	static Label life, enemy, score;
 	
 	function void init(){
-		do Statement.draw_frame();
 		let life = Label.new(3, 50, 0, "Life : ");
 		let enemy = Label.new(5, 50, 0, "Enemy : ");
 		let score = Label.new(7, 50, 0, "Score : ");
-		do Statement.display();
 		return;
 	}
 

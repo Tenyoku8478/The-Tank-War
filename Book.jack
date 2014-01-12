@@ -1,6 +1,6 @@
 class Book{
 	static Map map1;
-	function void init(){
+	function Map get_map(int level){
 		var Array map;
 		let map = Array.new(150);
 		let map[0] = 1;
@@ -154,13 +154,6 @@ class Book{
 		let map[148] = 0;
 		let map[149] = 0;
 		let map1 = Map.new(map);
-		return;
-	}
-
-	function Map get_map(int n){
-		if (n = 1){
-			return map1;
-        }
-        return 0;
+		return map1;
 	}
 }

@@ -19,7 +19,7 @@ class Map{
 					let i = i + 1;
 				}
 				if ((_map[row*15+col] = 1) | (_map[row*15+col] = 2)){
-					let tank = Tank.new(_map[row*15+col], col, row, Rand.rand());
+					let tank = Tank.new(_map[row*15+col], col, row, Rand.rand()&3);
 					do tank_list.insert(tank);
 				}
 				let col = col + 1;
@@ -175,5 +175,10 @@ class Map{
 	method List get_tank_list(){
 		return tank_list;
 	}
+    method void destroy(){
+        do Memory.deAlloc(map8);
+        do Memory.deAlloc(map24);
+        return;
+    }
 
 }
