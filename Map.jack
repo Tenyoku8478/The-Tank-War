@@ -85,7 +85,7 @@ class Map{
 			let col = 0;
 			while (col < 15){
 				if (map24[row*15+col] = 0){
-                    do Image.clear(col*24, row*24, col*24+24, row*24+24);
+                    do Image.clear(col*24, row*24, col*24+23, row*24+23);
                 }
 				if (map24[row*15+col] = 1){
 					do tank1.draw(col*24, row*24, 0);

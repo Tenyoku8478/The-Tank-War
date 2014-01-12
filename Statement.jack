@@ -1,24 +1,34 @@
 class Statement{
-	field Label life, enemy, score;
+	static Label life, enemy, score;
 	
-	constructor Statement new(int _life, int _enemy){
-		do Output.printString("test");
-		let life = Label.new(1, 0, _life, "Life : ");
-		let enemy = Label.new(2, 0, _enemy, "Enemy : ");
-		let score = Label.new(3, 0, 0, "Score : ");
-		do display();
-		return this;
-	}
-
-	method void update(int _life, int _enemy, int _score){
-		do life.assign(_life);
-		do enemy.assign(_enemy);
-		do score.assign(_score);
-		do display();
+	function void init(){
+		do Statement.draw_frame();
+		let life = Label.new(3, 50, 0, "Life : ");
+		let enemy = Label.new(5, 50, 0, "Enemy : ");
+		let score = Label.new(7, 50, 0, "Score : ");
+		do Statement.display();
 		return;
 	}
 
-	method void display(){
+	function void draw_frame(){
+		do Screen.setColor(true);
+		do Screen.drawRectangle(0, 0, 511, 7);
+		do Screen.drawRectangle(0, 248, 511, 255);
+		do Screen.drawRectangle(0, 8, 11, 247);
+		do Screen.drawRectangle(500, 8, 511, 247);
+		do Screen.drawRectangle(372, 8, 379, 247);
+		return;
+	}
+
+	function void update(int _life, int _enemy, int _score){
+		do life.assign(_life);
+		do enemy.assign(_enemy);
+		do score.assign(_score);
+		do Statement.display();
+		return;
+	}
+
+	function void display(){
 		do life.display();
 		do enemy.display();
 		do score.display();

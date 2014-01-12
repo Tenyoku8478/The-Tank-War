@@ -9,6 +9,7 @@ class Game{
 		do Book.init();
         do Tank.init();
 		do Bullet.init();
+		do Statement.init();
         do Rand.reset(71, 22);
         do Image.set_origin(12, 8);
 		return;
