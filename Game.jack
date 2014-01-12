@@ -2,7 +2,7 @@ class Game{
 	static Map map;
 	static List bullet_list, tank_list, AI_list;
 	static Player player;
-    static int status, enemy;
+    static int status, enemy, total_enemy;
 
 	function void init(){
 		do Album.init();
@@ -39,6 +39,8 @@ class Game{
 			}
 			do tank_list.next();
 		}
+		let total_enemy = enemy;
+		do Statement.update(5, enemy, 0);
         return;
     }
 	function void run(){
@@ -86,7 +88,8 @@ class Game{
 	}
     function void attack_tank(int x, int y){
         var Tank tank;
-        var int type;
+        var int type, enemy_live, player_live;
+		let enemy_live = 0;
         do tank_list.reset();
         while(~tank_list.end())
         {
@@ -98,8 +101,15 @@ class Game{
                 let enemy = enemy-1;
                 if(enemy=0) { let status = 1; }
             }}
+			if (tank.get_type() = 2){
+				let enemy_live = enemy_live + tank.get_live();
+			}
+			else{
+				let player_live = tank.get_live();
+			}
             do tank_list.next();
         }
+		do Statement.update(player_live, enemy, ((10*total_enemy)-(5*enemy)-enemy_live)*100);
         return;
     }
 }
