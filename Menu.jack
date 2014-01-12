@@ -62,11 +62,17 @@ class Menu
                 let now = now+1;
                 do _draw_dot(1);
             }
-            if((c = 32))
+            if(c = 32) //Space key
             {
                 do Screen.setColor(0);
                 do Screen.clearScreen();
                 return now;
+            }
+            if(c = 81) //Q
+            {
+                do Screen.setColor(0);
+                do Screen.clearScreen();
+                return -1;
             }
         }
         return now;

@@ -15,39 +15,40 @@ class Main{
         let level_menu = Menu.new(10, 25 , 3, list);
         while(true)
         {
-			do Game.init();
 			let status = 1;
             let input = main_menu.run();
-			if (input = 2){
-				return;
-			}
-			else{
+			if ((input=0)|(input=1)){
+                do Game.init();
 				if (input = 0){let level = 1;}
 				else{let level = level_menu.run() + 1;}
-                while((status = 1) & (level < 4))
-                {
-                    do Output.moveCursor(12, 25);
-                    do Output.printString(list[level-1]);
-					do Sys.wait(1500);
-                    do Screen.clearScreen();
-                    do Game.ready(level);
-					let status = Game.run();
-                    do Game.close();
-                    do Screen.clearScreen();
-					let level = level + 1;
+                if(~(level=0)){
+                    while((status = 1) & (level < 4)){
+                        do Output.moveCursor(12, 25);
+                        do Output.printString(list[level-1]);
+                        do Sys.wait(1500);
+                        do Screen.clearScreen();
+                        do Game.ready(level);
+                        let status = Game.run();
+                        do Game.close();
+                        do Screen.clearScreen();
+                        let level = level + 1;
+                    }
+                    if (status = 1){
+                            do Game.ready(4);
+                            let status = Game.run();
+                            do Game.close();
+                            do Screen.clearScreen();
+                    }
+                    if (status = -1){
+                            do Game.ready(5);
+                            let status = Game.run();
+                            do Game.close();
+                            do Screen.clearScreen();
+                    }
                 }
             }
-			if (status = 1){
-                    do Game.ready(4);
-					let status = Game.run();
-                    do Game.close();
-                    do Screen.clearScreen();
-			}
-			if (status = -1){
-                    do Game.ready(5);
-					let status = Game.run();
-                    do Game.close();
-                    do Screen.clearScreen();
+			if (input = 2){
+				return;
 			}
         }
 		return;
