@@ -1,8 +1,42 @@
 class Main{
 	function void main(){
-		do Game.init();
-		do Game.ready(1);
-		do Game.run();
+        var int input;
+        var Manu main_manu, level_manu;
+        var Array list;
+        var int level;
+        let list = Array.new(3);
+        let list[0] = "Start";
+        let list[1] = "level";
+        let list[2] = "Exit";
+        let main_manu = Manu.new(10, 25 , 3, list);
+        let list = Array.new(3);
+        let list[0] = "level 1";
+        let list[1] = "level 2";
+        let list[2] = "level 3";
+        let level_manu = Manu.new(10, 25 , 3, list);
+        while(true)
+        {
+            let input = main_manu.run();
+            if(input=0)
+            {
+                do Game.init();
+                do Game.ready(1);
+                do Game.run();
+                return;
+            }
+            if(input=1)
+            {
+                let level = level_manu.run();
+                do Game.init();
+                do Game.ready(level+1);
+                do Game.run();
+                return;
+            }
+            if(input=2)
+            {
+                return;
+            }
+        }
 		return;
 	}
 }
