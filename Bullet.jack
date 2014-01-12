@@ -59,7 +59,7 @@ class Bullet{
 			if (type = 5){
 				do Game.over();
 			}
-			if (~(type = 4) & (owner = 1) & (Game.get_penetrate() = true)){
+			if (~(type = 4) & (owner = 1) & (Cheat.get_penetrate() = true)){
 				return true;
 			}
         }

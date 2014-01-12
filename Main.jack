@@ -3,13 +3,13 @@ class Main{
         var int input, status, level;
         var Menu main_menu, level_menu;
         var Array list;
-        var Boolean penetrate, seperate, triple;
 
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "level";
         let list[2] = "Exit";
         let main_menu = Menu.new(10, 25 , 3, list);
+		do main_menu.add_cheat("NOCD");
 		do main_menu.add_cheat("ACHIN");
 		do main_menu.add_cheat("XDDD");
         do main_menu.add_cheat("JIZZ");
@@ -18,10 +18,7 @@ class Main{
         let list[1] = "level 2";
         let list[2] = "level 3";
         let level_menu = Menu.new(10, 25 , 3, list);
-
-        let penetrate = false;
-		let seperate = false;
-		let triple = false;
+		do Cheat.init();
         while(true)
         {
 			let status = 1;
@@ -36,38 +33,41 @@ class Main{
                         do Output.printString(list[level-1]);
                         do Sys.wait(1500);
                         do Screen.clearScreen();
-                        do Game.ready(level, penetrate, seperate, triple);
+                        do Game.ready(level);
                         let status = Game.run();
                         do Game.close();
                         do Screen.clearScreen();
                         let level = level + 1;
                     }
+                    do Cheat.init();
                     if (status = 1){
-                            do Game.ready(4, false, false, false);
+                            do Game.ready(4);
                             let status = Game.run();
                             do Game.close();
                             do Screen.clearScreen();
                     }
                     if (status = -1){
-                            do Game.ready(5, false, false, false);
+                            do Game.ready(5);
                             let status = Game.run();
                             do Game.close();
                             do Screen.clearScreen();
                     }
-                    let penetrate = false;
                 }
             }
 			if (input = 2){
 				return;
 			}
             if (input = 3){ //JIZZ
-                let penetrate = true;
+                do Cheat.set_penetrate();
             }
 			if (input = 4){ //XDDD
-				let seperate = true;
+				do Cheat.set_seperate();
 			}
 			if (input = 5){ //ACHIN
-				let triple = true;
+				do Cheat.set_triple();
+			}
+			if (input = 6){ //NOCD
+				do Cheat.set_nocd();
 			}
         }
 		return;

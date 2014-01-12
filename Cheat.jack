@@ -1,0 +1,38 @@
+class Cheat{
+	static boolean penetrate, seperate, triple, nocd;
+	function void init(){
+		let penetrate = false;
+		let seperate = false;
+		let triple = false;
+		let nocd = false;
+		return;
+	}
+	function boolean get_penetrate(){
+		return penetrate;
+	}
+	function boolean get_seperate(){
+		return seperate;
+	}
+	function boolean get_triple(){
+		return triple;
+	}
+	function boolean get_nocd(){
+		return nocd;
+	}
+	function void set_penetrate(){
+		let penetrate = true;
+		return;
+	}
+	function void set_seperate(){
+		let seperate = true;
+		return;
+	}
+	function void set_triple(){
+		let triple = true;
+		return;
+	}
+	function void set_nocd(){
+		let nocd = true;
+		return;
+	}
+}
