@@ -88,6 +88,26 @@ class Game{
 				return 2;
 			}
 		}
+        let i = -1;
+        while(i)
+        {
+            do bomb_list.reset();
+            if(bomb_list.end()){let i = 0;}
+            else
+            {
+                while (~bomb_list.end()){
+                    let bomb = bomb_list.get();
+                    if (~bomb.explode()){
+                        do bomb_list.delete();
+                    }
+                    else {
+                        do bomb_list.next();
+                    }
+                }
+            }
+            do Sys.wait(100);
+        }
+        do Sys.wait(300);
         return status;
 	}
 	function void close() {
