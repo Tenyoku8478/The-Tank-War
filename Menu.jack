@@ -26,6 +26,7 @@ class Menu
         }
         return this;
     }
+    /*
     method void _draw_select(boolean color)
     {
         do Screen.setColor(color);
@@ -33,6 +34,24 @@ class Menu
         do Screen.drawLine((col+width)*8+1, (row+now+now)*11-2, (col+width)*8+1, (row+now+now+1)*11+2);
         do Screen.drawLine(col*8-2, (row+now+now)*11-2, (col+width)*8+1, (row+now+now)*11-2);
         do Screen.drawLine(col*8-2, (row+now+now+1)*11+2, (col+width)*8+1, (row+now+now+1)*11+2);
+        return;
+    }
+    */
+    method void _draw_select(boolean color)
+    {
+        var String str;
+        let str = list[now];
+        do Output.moveCursor(row+now+now, col-1);
+        if(color)
+        {
+            do Output.printString(str);
+            do Output.printChar(32);
+        }
+        else
+        {
+            do Output.printChar(32);
+            do Output.printString(str);
+        }
         return;
     }
     method char _input()
