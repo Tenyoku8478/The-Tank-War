@@ -51,6 +51,7 @@ class Bullet{
                 return true;
             }
             if ((type = 1) | (type = 2)){
+                do Game.attack_tank(x, y);
             }
             if (type = 3){
                 do map.update(x, y, x, y, 0);

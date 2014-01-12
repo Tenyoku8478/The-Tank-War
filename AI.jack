@@ -12,10 +12,19 @@ class AI
 
     method void play()
     {
-        if(~tank.move(now_dir)){ let now_dir = Rand.rand()&3;}
-		if (Rand.rand()<17){
-			do tank.shoot();
-		}
+        if(~tank.dead())
+        {
+            if(Rand.rand()&2=0)
+            {
+                if(~tank.move(now_dir)){ let now_dir = Rand.rand()&3;}
+            }
+            else
+            {
+                if (Rand.rand()<17){
+                    do tank.shoot();
+                }
+            }
+        }
         return;
     }
 }

@@ -6,6 +6,7 @@ class Tank
     field Image img;
     field int off_x, off_y;
     field int x, y, dir, type;
+    field int live;
 
     constructor Tank new(int _type, int _x, int _y, int _dir)
     {
@@ -15,6 +16,7 @@ class Tank
         let off_x = x*8;
         let off_y = y*8;
         let dir = _dir;
+        let live = 5;
         let img = Album.get_tank(type);
         return this;
     }
@@ -71,7 +73,6 @@ class Tank
 		do Game.add_bullet(bullet);
 		return;
 	}
-
     method boolean move(int _dir)
     {
         let dir = _dir;
@@ -107,11 +108,26 @@ class Tank
         }
         return true;
     }
-	method int get_type(){
+	method int get_type()
+    {
 		return type;
 	}
-    method void attacked(int _x, int _y)
+    method boolean dead()
     {
+        return (live = 0);
+    }
+    method boolean attacked(int _x, int _y)
+    {
+        if((live>0)&(_x>(x-1))&(_x<(x+3))&(_y>(y-1))&(_y<(y+3)))
+        {
+            let live = live - 1;
+            if(live = 0) { do _die(); return type;}
+        }
+        return 0;
+    }
+    method void _die()
+    {
+        do map.update(x, y, x+3, y+3, 0);
         return;
     }
 }

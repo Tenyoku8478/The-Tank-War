@@ -2,6 +2,7 @@ class Game{
 	static Map map;
 	static List bullet_list, tank_list, AI_list;
 	static Player player;
+    static int status, enemy;
 
 	function void init(){
 		do Album.init();
@@ -19,6 +20,8 @@ class Game{
 		let tank_list = map.get_tank_list();
 		let bullet_list = List.new();
 		let AI_list = List.new();
+        let status = 0;
+        let enemy = 0;
 		do map.draw();
 		do Tank.set_map(map);
 		do Bullet.set_map(map);
@@ -29,6 +32,7 @@ class Game{
 				let player = Player.new(tank);
 			}
 			else{
+                let enemy = enemy+1;
 				let ai = AI.new(tank);
 				do AI_list.insert(ai);
 			}
@@ -40,7 +44,7 @@ class Game{
 		var AI ai;
 		var Bullet bullet;
         var int i;
-		while(true){
+		while(status=0){
             do player.play();
 			do AI_list.reset();
 			while (~AI_list.end()){
@@ -63,6 +67,15 @@ class Game{
                 let i = i+1;
             }
         }
+        do Output.moveCursor(10, 22);
+        if(status=1)
+        {
+            do Output.printString("win!");
+        }
+        else
+        {
+            do Output.printString("lose!");
+        }
 		return;
 	}
 
@@ -70,4 +83,22 @@ class Game{
 		do bullet_list.insert(bullet);
 		return;
 	}
+    function void attack_tank(int x, int y){
+        var Tank tank;
+        var int type;
+        do tank_list.reset();
+        while(~tank_list.end())
+        {
+            let tank = tank_list.get();
+            let type = tank.attacked(x, y);
+            if(type = 1){ let status = -1; }
+            else{if(type = 2)
+            {
+                let enemy = enemy-1;
+                if(enemy=0) { let status = 1; }
+            }}
+            do tank_list.next();
+        }
+        return;
+    }
 }
