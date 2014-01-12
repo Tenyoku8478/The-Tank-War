@@ -11,7 +11,7 @@ class Main{
         let list[0] = "Start";
         let list[1] = "level";
         let list[2] = "Exit";
-        let main_menu = Menu.new(15, 29, 3, list);
+        let main_menu = Menu.new(15, 30, 3, list);
 		do main_menu.add_cheat("NOCD");
 		do main_menu.add_cheat("ACHIN");
 		do main_menu.add_cheat("XDDD");
@@ -20,7 +20,7 @@ class Main{
         let list[0] = "level 1";
         let list[1] = "level 2";
         let list[2] = "level 3";
-        let level_menu = Menu.new(15, 28, 3, list);
+        let level_menu = Menu.new(15, 29, 3, list);
 		do Board.set_origin(16, 8);
 		let board = Album.get_board();
 		do board.draw();
