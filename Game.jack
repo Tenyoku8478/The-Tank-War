@@ -3,7 +3,7 @@ class Game{
 	static List bullet_list, tank_list, AI_list, bomb_list;
 	static Player player;
 	static int status, enemy, total_enemy, live, score;
-	static boolean penetrate, seperate, turbo;
+	static boolean penetrate, seperate, triple;
 
 	function void init(){
 		do Album.init();
@@ -17,7 +17,7 @@ class Game{
 		let score = 0;
 		return;
 	}
-	function void ready(int level, boolean _penetrate, boolean _seperate, boolean _turbo){
+	function void ready(int level, boolean _penetrate, boolean _seperate, boolean _triple){
 		var AI ai;
 		var Tank tank;
 		let map = Book.get_map(level);
@@ -29,7 +29,7 @@ class Game{
 		let enemy = 0;
 		let penetrate = _penetrate;
 		let seperate = _seperate;
-		let turbo = _turbo;
+		let triple = _triple;
 		do Statement.draw_frame();
 		do Statement.display();
 		do map.draw(); do Tank.set_map(map);
@@ -149,6 +149,9 @@ class Game{
 	}
 	function boolean get_seperate(){
 		return seperate;
+	}
+	function boolean get_triple(){
+		return triple;
 	}
 	function void attack_tank(int x, int y){
 		var Tank tank;

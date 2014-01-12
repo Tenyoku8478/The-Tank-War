@@ -63,15 +63,39 @@ class Tank
 	method void shoot(int _dir){
 		var Bullet bullet;
 		if (_dir = 0){
+			if ((type = 1) & (Game.get_triple())){
+				let bullet = Bullet.new(x, y, _dir, type);
+				do Game.add_bullet(bullet);
+				let bullet = Bullet.new(x+2, y, _dir, type);
+				do Game.add_bullet(bullet);
+			}
 			let bullet = Bullet.new(x+1, y, _dir, type);
 		}
 		if (_dir = 1){
+			if ((type = 1) & (Game.get_triple())){
+				let bullet = Bullet.new(x+2, y, _dir, type);
+				do Game.add_bullet(bullet);
+				let bullet = Bullet.new(x+2, y+2, _dir, type);
+				do Game.add_bullet(bullet);
+			}
 			let bullet = Bullet.new(x+2, y+1, _dir, type);
 		}
 		if (_dir = 2){
+			if ((type = 1) & (Game.get_triple())){
+				let bullet = Bullet.new(x, y+2, _dir, type);
+				do Game.add_bullet(bullet);
+				let bullet = Bullet.new(x+2, y+2, _dir, type);
+				do Game.add_bullet(bullet);
+			}
 			let bullet = Bullet.new(x+1, y+2, _dir, type);
 		}
 		if (_dir = 3){
+			if ((type = 1) & (Game.get_triple())){
+				let bullet = Bullet.new(x, y, _dir, type);
+				do Game.add_bullet(bullet);
+				let bullet = Bullet.new(x, y+2, _dir, type);
+				do Game.add_bullet(bullet);
+			}
 			let bullet = Bullet.new(x, y+1, _dir, type);
 		}
 		do Game.add_bullet(bullet);
