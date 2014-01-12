@@ -19,6 +19,10 @@ class Main{
             let input = main_manu.run();
             if(input=0)
             {
+                do Output.moveCursor(10, 25);
+                do Output.printString("level 1");
+                do Screen.clearScreen();
+                do Sys.wait(500);
                 do Game.init();
                 do Game.ready(1);
                 do Game.run();
