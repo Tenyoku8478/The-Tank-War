@@ -21,7 +21,7 @@
 <br />
 <code id="res"></code>
 <script>
-var row = 10, col = 15;
+var row = 30, col = 60;
 String.prototype.repeat = function( num )
 {
     return new Array( num + 1 ).join( this );
@@ -88,7 +88,8 @@ function update(){
             if(map[i*col+j] == 'E') k=2;
             if(map[i*col+j] == 'S') k=3;
             if(map[i*col+j] == 'H') k=4;
-            res.append('let map['+(i*col+j)+'] = '+k+';<br />');
+			if (k != 0)
+				res.append('let map['+(i*col+j)+'] = '+k+';<br />');
         }
     }
 }

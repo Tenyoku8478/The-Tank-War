@@ -3,6 +3,7 @@ class Main{
         var int input, status, level;
         var Menu main_menu, level_menu;
         var Array list;
+		var Board board;
 
         let list = Array.new(3);
         let list[0] = "Start";
@@ -19,6 +20,9 @@ class Main{
         let list[2] = "level 3";
         let level_menu = Menu.new(10, 25 , 3, list);
 		do Cheat.init();
+		do Board.set_origin(16, 8);
+		let board = Album.get_board();
+		do board.draw();
         while(true)
         {
 			let status = 1;
@@ -29,6 +33,7 @@ class Main{
 				else{let level = level_menu.run() + 1;}
                 if(~(level=0)){
                     while((status = 1) & (level < 4)){
+						do Screen.clearScreen();
                         do Output.moveCursor(12, 25);
                         do Output.printString(list[level-1]);
                         do Sys.wait(1500);
@@ -36,22 +41,22 @@ class Main{
                         do Game.ready(level);
                         let status = Game.run();
                         do Game.close();
-                        do Screen.clearScreen();
                         let level = level + 1;
                     }
                     do Cheat.init();
                     if (status = 1){
+                            do Screen.clearScreen();
                             do Game.ready(4);
                             let status = Game.run();
                             do Game.close();
-                            do Screen.clearScreen();
                     }
                     if (status = -1){
+                            do Screen.clearScreen();
                             do Game.ready(5);
                             let status = Game.run();
                             do Game.close();
-                            do Screen.clearScreen();
                     }
+					do board.draw();
                 }
             }
 			if (input = 2){

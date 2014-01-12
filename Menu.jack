@@ -97,14 +97,12 @@ class Menu
             }
             if(c = 32) //Space key
             {
-                do Screen.setColor(0);
-                do Screen.clearScreen();
+                do Board.clear();
                 return now;
             }
             if(c = 81) //Q
             {
-                do Screen.setColor(0);
-                do Screen.clearScreen();
+                do Board.clear();
                 return -1;
             }
         }
