@@ -1,10 +1,11 @@
 class Cheat{
-	static boolean penetrate, seperate, triple, nocd;
+	static boolean penetrate, seperate, triple, nocd, all_soft;
 	function void init(){
 		let penetrate = false;
 		let seperate = false;
 		let triple = false;
 		let nocd = false;
+		let all_soft = false;
 		return;
 	}
 	function boolean get_penetrate(){
@@ -18,6 +19,9 @@ class Cheat{
 	}
 	function boolean get_nocd(){
 		return nocd;
+	}
+	function boolean get_all_soft(){
+		return all_soft;
 	}
 	function void set_penetrate(){
 		let penetrate = true;
@@ -33,6 +37,10 @@ class Cheat{
 	}
 	function void set_nocd(){
 		let nocd = true;
+		return;
+	}
+	function void set_all_soft(){
+		let all_soft = true;
 		return;
 	}
 }

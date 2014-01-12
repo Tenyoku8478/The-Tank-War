@@ -2,7 +2,7 @@ class Map{
 	field Array map8, map24;
 	field List tank_list;
 	constructor Map new(Array _map){
-		var int row, col, i, j;
+		var int row, col, i, j, type;
 		var Tank tank;
 		let tank_list = List.new();
 		let row = 0;
@@ -12,13 +12,15 @@ class Map{
 			let col = 0;
 			while (col < 15){
 				let i = 0;
+                let type = _map[row*15+col];
+                if((type=4)&Cheat.get_all_soft()) { let type = 3; }
 				while (i < 3){
-					let map8[(row*135)+(col*3)+i] = _map[row*15+col];
-					let map8[(row*135)+(col*3)+i+45] = _map[row*15+col];
-					let map8[(row*135)+(col*3)+i+90] = _map[row*15+col];
+					let map8[(row*135)+(col*3)+i] = type;
+					let map8[(row*135)+(col*3)+i+45] = type;
+					let map8[(row*135)+(col*3)+i+90] = type;
 					let i = i + 1;
 				}
-				if ((_map[row*15+col] = 1) | (_map[row*15+col] = 2)){
+				if ((type = 1) | (type = 2)){
 					let tank = Tank.new(_map[row*15+col], col, row, Rand.rand()&3);
 					do tank_list.insert(tank);
 				}
@@ -75,7 +77,7 @@ class Map{
 	}
 
 	method void draw(){
-		var int row, col, i, j;
+		var int row, col, i, j, type;
         var int row15, col15;
         var int row24, col24;
 		var Image soft, hard, QB, tank1, tank2;
@@ -92,16 +94,15 @@ class Map{
 			let col15 = 0;
 			let col24 = 0;
 			while (col < 15){
-				if (map24[row15+col] = 0){
-					do Image.clear(col24, row24, col24+23, row24+23);
-				}
-				if (map24[row15+col] = 1){
+                let type = map24[row15+col];
+                //if((type=4)&Cheat.get_all_soft()) { let type = 3; }
+				if (type = 1){
 					do tank1.draw(col24, row24, 0);
 				}
-				if (map24[row15+col] = 2){
+				if (type = 2){
 					do tank2.draw(col24, row24, 0);
 				}
-				if (map24[row15+col] = 3){ //Soft
+				if (type = 3){ //Soft
 					let i = 0;
 					while (i < 24){
 						let j = 0;
@@ -112,7 +113,7 @@ class Map{
 						let i = i + 8;
 					}
 				}
-				if (map24[row15+col] = 4){ //Hard
+				if (type = 4){ //Hard
 					do hard.draw(col24, row24, 0);
 				}
 				let col = col + 1;
