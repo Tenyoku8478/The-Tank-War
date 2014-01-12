@@ -85,6 +85,9 @@ class Game{
 					do bomb_list.next();
 				}
 			}
+			if (Keyboard.keyPressed() = 81){
+				return 2;
+			}
 		}
         return status;
 	}

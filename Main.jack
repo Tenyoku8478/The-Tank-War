@@ -1,9 +1,8 @@
 class Main{
 	function void main(){
-        var int input;
+        var int input, status, level;
         var Menu main_menu, level_menu;
         var Array list;
-        var int level;
         let list = Array.new(3);
         let list[0] = "Start";
         let list[1] = "level";
@@ -14,38 +13,42 @@ class Main{
         let list[1] = "level 2";
         let list[2] = "level 3";
         let level_menu = Menu.new(10, 25 , 3, list);
-        do Game.init();
         while(true)
         {
+			do Game.init();
+			let status = 1;
             let input = main_menu.run();
-            if(input=0)
-            {
-				let level = 1;
-                while(level < 6)
+			if (input = 2){
+				return;
+			}
+			else{
+				if (input = 0){let level = 1;}
+				else{let level = level_menu.run() + 1;}
+                while((status = 1) & (level < 4))
                 {
-                    do Output.moveCursor(10, 25);
-                    do Output.printString(list[0]);
+                    do Output.moveCursor(12, 25);
+                    do Output.printString(list[level-1]);
 					do Sys.wait(1500);
                     do Screen.clearScreen();
                     do Game.ready(level);
-                    if ( Game.run() < 0) {let level = 4;}
+					let status = Game.run();
                     do Game.close();
                     do Screen.clearScreen();
 					let level = level + 1;
                 }
-                return;
             }
-            if(input=1)
-            {
-                let level = level_menu.run();
-                do Game.ready(level+1);
-                do Game.run();
-                return;
-            }
-            if(input=2)
-            {
-                return;
-            }
+			if (status = 1){
+                    do Game.ready(4);
+					let status = Game.run();
+                    do Game.close();
+                    do Screen.clearScreen();
+			}
+			if (status = -1){
+                    do Game.ready(5);
+					let status = Game.run();
+                    do Game.close();
+                    do Screen.clearScreen();
+			}
         }
 		return;
 	}
