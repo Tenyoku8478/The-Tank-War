@@ -1,10 +1,10 @@
-class Manu
+class Menu
 {
     field Array list;
     field int now;
     field int row, col, n;
 
-    constructor Manu new(int _row, int _col, int _n, Array _list)
+    constructor Menu new(int _row, int _col, int _n, Array _list)
     {
         let row = _row;
         let col = _col;
