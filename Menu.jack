@@ -118,7 +118,7 @@ class Menu
             let i = i+1;
             do cheat_list.next();
         }
-        return -1;
+        return -2;
     }
 
     method int run()
@@ -135,39 +135,39 @@ class Menu
         }
         do _reset_cheat();
         do _draw_select(1);
-        while(true)
+        let flag = -2;
+        while(flag=-2)
         {
             let c = _input();
             let flag = _check_cheat(c);
-            if(~(flag=-1)) {return flag;}
-            if((c = 131)&(now>0))
-            {
-                do _draw_select(0);
-                let now = now-1;
-                do _draw_select(1);
-            }
-            if((c = 133)&(now+1<n))
-            {
-                do _draw_select(0);
-                let now = now+1;
-                do _draw_select(1);
-            }
-            if(c = 32) //Space key
-            {
-                do _draw_select(0);
-                do Screen.setColor(false);
-                do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
-                return now;
-            }
-            if(c = 81) //Q
-            {
-                do _draw_select(0);
-                do Screen.setColor(false);
-                do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
-                return -1;
+            if(flag=-2)
+            { 
+                if((c = 131)&(now>0))
+                {
+                    do _draw_select(0);
+                    let now = now-1;
+                    do _draw_select(1);
+                }
+                if((c = 133)&(now+1<n))
+                {
+                    do _draw_select(0);
+                    let now = now+1;
+                    do _draw_select(1);
+                }
+                if(c = 32) //Space key
+                {
+                    let flag = now;
+                }
+                if(c = 81) //Q
+                {
+                    let flag = -1;
+                }
             }
         }
-        return now;
+        do _draw_select(0);
+        do Screen.setColor(false);
+        do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
+        return flag;
     }
     method void add_cheat(String code)
     {
