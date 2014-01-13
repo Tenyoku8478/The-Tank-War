@@ -5,6 +5,7 @@ class Main{
         var Array list;
 		var Scalable board, board_qb;
 
+		do Author.init();
 		do Album.init();
 		do Cheat.init();
 

@@ -1,11 +1,11 @@
 class Author
 {
-    function void draw()
+    static Array skg, achin, tenyoku;
+
+    function void init()
     {
         var Array map;
-        var int i;
-        do Screen.clearScreen();
-        let map = Array.new(24);
+        let map = Array.new(23);
         let map[0] = "      ;LLC      ";
         let map[1] = "     ;ffLGCG    ";
         let map[2] = "    ;itiLCG@L   ";
@@ -29,14 +29,8 @@ class Author
         let map[20] = "C@@@tfLCCC,     ";
         let map[21] = "@     CCG@      ";
         let map[22] = "@ skg @@@@@     ";
-        let i = 0;
-        while(i<23)
-        {
-            do Output.moveCursor(i, 23);
-            do Output.printString(map[i]);
-            let i = i+1;
-        }
-        let map = Array.new(24);
+        let skg = map;
+        let map = Array.new(23);
         let map[0] = "  L@@@@@@@@C@@@G     ";
         let map[1] = "  G@@@@G@@@@@@@C@    ";
         let map[2] = "  C@@iC@@@@@@ClLC    ";
@@ -60,14 +54,8 @@ class Author
         let map[20] = "@@@@@@@@@GCCCG@@@@@@ ";
         let map[21] = "Gl@@@       LG@@@@@@@";
         let map[22] = "Gl@@@ AChin LG@@@@@@@";
-        let i = 0;
-        while(i<23)
-        {
-            do Output.moveCursor(i, 0);
-            do Output.printString(map[i]);
-            let i = i+1;
-        }
-        let map = Array.new(24);
+        let achin = map;
+        let map = Array.new(23);
         let map[0] = "    @@@@@@@@@          ";
         let map[1] = "   @@@@@@@@@@@         ";
         let map[2] = "  @@@ll;ilfC@@G        ";
@@ -91,11 +79,24 @@ class Author
         let map[20] = " f@@..,lCGG@@@@@@Lll@@@";
         let map[21] = "@@@G .:lff@@         @@";
         let map[22] = "@@@G .:lff@@ Tenyoku @@";
+        let tenyoku = map;
+        return;
+    }
+    function void draw()
+    {
+        var int i;
+        do Screen.clearScreen();
         let i = 0;
         while(i<23)
         {
+            do Output.moveCursor(i, 23);
+            do Output.printString(skg[i]);
+
+            do Output.moveCursor(i, 0);
+            do Output.printString(achin[i]);
+
             do Output.moveCursor(i, 40);
-            do Output.printString(map[i]);
+            do Output.printString(tenyoku[i]);
             let i = i+1;
         }
         return;
