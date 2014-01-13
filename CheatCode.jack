@@ -16,9 +16,9 @@ class CheatCode
     }
     method boolean complete(char a)
     {
-        if(key[now+2] = a) { let now = now+1; }
+        if(key.charAt(now) = a) { let now = now+1; }
         else { let now = 0; }
-        if(now = key[0]) { return true; }
+        if(now = key.length()) { return true; }
         return false;
     }
 }
