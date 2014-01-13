@@ -154,7 +154,7 @@ class Tank
     {
         if((live>0)&(_x>(x-1))&(_x<(x+3))&(_y>(y-1))&(_y<(y+3)))
         {
-            if (~Cheat.get_imba() | type = 2) {let live = live - 1;}
+            if ((~Cheat.get_imba()) | (type = 2)) {let live = live - 1;}
             if(live = 0) { do _die(); return 2;}
 			return 1;
         }
