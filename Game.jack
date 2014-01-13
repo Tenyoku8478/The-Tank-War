@@ -178,7 +178,9 @@ class Game{
 					do Game.over();
 				}
 				else{ if (attack_type = 1){
-					let live = live - 1;
+					if (~Cheat.get_imba()){
+						let live = live - 1;
+					}
 				}}
 			}
 			else{

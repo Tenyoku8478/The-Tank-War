@@ -13,6 +13,7 @@ class Main{
         let list[1] = "Level";
         let list[2] = "Exit";
         let main_menu = Menu.new(15, 30, 3, list);
+		do main_menu.add_cheat("IMBA");
 		do main_menu.add_cheat("SOFT");
 		do main_menu.add_cheat("NOCD");
 		do main_menu.add_cheat("ACHIN");
@@ -70,7 +71,8 @@ class Main{
 			if (input = 4){ do Cheat.set_seperate(); } //XDDD
 			if (input = 5){ do Cheat.set_triple(); } //ACHIN
 			if (input = 6){ do Cheat.set_nocd(); } //NOCD
-			if (input = 7){ do Cheat.set_all_soft(); } //NOCD
+			if (input = 7){ do Cheat.set_all_soft(); } //SOFT
+			if (input = 8){ do Cheat.set_imba(); } //IMBA
         }
 		return;
 	}
