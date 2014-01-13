@@ -11,7 +11,7 @@ class Main{
         let list = Array.new(4);
         let list[0] = "Start";
         let list[1] = "Level";
-        let list[2] = "Athors";
+        let list[2] = "Authors";
         let list[3] = "Exit";
         let main_menu = Menu.new(15, 30, 4, list);
 		do main_menu.add_cheat("CSIE");
