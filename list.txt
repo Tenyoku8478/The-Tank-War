@@ -1,15 +1,19 @@
 class AI{
+    constructor AI new(Tank _tank)
     method void play()
 }
 class Bomb{
 	function void init()
+	constructor Bomb new(int _x, int _y)
 	method boolean explode()
 }
 class CheatCode{
+    constructor CheatCode new(String _key)
     method void reset()
     method boolean complete(char a)
 }
 class Image{
+    constructor Image new(int width, int height, Array map)
     function void set_origin(int x, int y)
     function void clear(int x1, int y1, int x2, int y2)
 	function void debug(int x1, int y1, int x2, int y2)
@@ -21,11 +25,13 @@ class Main{
 	function void main()
 }
 class Node{
+	constructor Node new(int _data, List _next)
 	method void set_next(Node data)
 	method Node get_next()
 	method int get_data()
 }
 class Scalable{
+    constructor Scalable new(int width, int height, int times, Array map)
     method void draw(int x, int y)
 }
 class Album{
@@ -49,19 +55,19 @@ class Cheat{
 	function boolean get_triple()
 	function boolean get_nocd()
 	function boolean get_all_soft()
-	function boolean get_imba()
 	function void set_penetrate()
 	function void set_seperate()
 	function void set_triple()
 	function void set_nocd()
 	function void set_all_soft()
-	function void set_imba()
 }
 class Label{
+	constructor Label new(int _x, int _y, int _data, String _label)
 	method void display()
 	method void assign(int _data)
 }
 class Map{
+	constructor Map new(Array _map)
 	method void debug_draw()
 	method void draw()
 	method boolean check(int x1, int y1, int x2, int y2)
@@ -71,6 +77,7 @@ class Map{
 	method void destroy()
 }
 class Player{
+    constructor Player new(Tank _tank)
     method void play()
 }
 class Statement{
@@ -80,6 +87,7 @@ class Statement{
 	function void display()
 }
 class Board{
+    constructor Board new(int width, int height, Array map)
     function void set_origin(int x, int y)
 	function void clear()
     method void draw()
@@ -87,6 +95,7 @@ class Board{
 class Bullet{
 	function void init()
 	function void set_map(Map _map)
+	constructor Bullet new(int _x, int _y, int _dir, int _owner)
 	method boolean move()
 }
 class Game{
@@ -100,6 +109,7 @@ class Game{
 	function void attack_tank(int x, int y)
 }
 class List{
+	constructor List new()
     method void reset()
 	method boolean end()
     method boolean next()
@@ -108,6 +118,7 @@ class List{
     method void delete()
 }
 class Menu{
+    constructor Menu new(int _row, int _col, int _n, Array _list)
     function void _xor(int row, int col)
     method void _draw_select(boolean color)
     method void _draw_select(boolean color)
@@ -123,6 +134,7 @@ class Rand{
     function int rand()
 }
 class Tank{
+    constructor Tank new(int _type, int _x, int _y, int _dir)
 	method void set_live(int _live)
     function void init()
     function void set_map(Map _map)
