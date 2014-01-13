@@ -72,7 +72,7 @@ class Main{
             if (input = 2)
             {
                 do Author.draw();
-                do Sys.wait(1500);
+                do Keyboard.readChar();
                 do Screen.clearScreen();
                 do board.draw(16, 8);
                 do board_qb.draw(320, 130);

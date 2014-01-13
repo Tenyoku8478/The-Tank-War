@@ -27,8 +27,8 @@ class Author
         let map[18] = "LL@CtfLG@LL:    ";
         let map[19] = "GCGGCCGCLLL     ";
         let map[20] = "C@@@tfLCCC,     ";
-        let map[21] = "@@@@@GCCG@      ";
-        let map[22] = "@@@@@@@@@@@     ";
+        let map[21] = "@     CCG@      ";
+        let map[22] = "@ skg @@@@@     ";
         let i = 0;
         while(i<23)
         {
@@ -58,8 +58,8 @@ class Author
         let map[18] = "@GG@@@G     i@@@@@@@ ";
         let map[19] = "@t@@@@@@:,:fG@@@@@@@ ";
         let map[20] = "@@@@@@@@@GCCCG@@@@@@ ";
-        let map[21] = "Gl@@@G@@@GCLLG@@@@@@@";
-        let map[22] = "Gl@@@G@@@GCLLG@@@@@@@";
+        let map[21] = "Gl@@@       LG@@@@@@@";
+        let map[22] = "Gl@@@ AChin LG@@@@@@@";
         let i = 0;
         while(i<23)
         {
@@ -89,8 +89,8 @@ class Author
         let map[18] = "     ..;@@@@@@@@       ";
         let map[19] = "   @  .iG@G@@@@@l,  ,: ";
         let map[20] = " f@@..,lCGG@@@@@@Lll@@@";
-        let map[21] = "@@@G .:lff@@@@@@@@@f@@@";
-        let map[22] = "@@@G .:lff@@@@@@@@@f@@@";
+        let map[21] = "@@@G .:lff@@         @@";
+        let map[22] = "@@@G .:lff@@ Tenyoku @@";
         let i = 0;
         while(i<23)
         {
