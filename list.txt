@@ -1,102 +1,5 @@
-class AI{
-    constructor AI new(Tank _tank)
-    method void play()
-}
-class Bomb{
-	function void init()
-	constructor Bomb new(int _x, int _y)
-	method boolean explode()
-}
-class CheatCode{
-    constructor CheatCode new(String _key)
-    method void reset()
-    method boolean complete(char a)
-}
-class Image{
-    constructor Image new(int width, int height, Array map)
-    function void set_origin(int x, int y)
-    function void clear(int x1, int y1, int x2, int y2)
-	function void debug(int x1, int y1, int x2, int y2)
-    method int _turn_x(int x, int y, int dir)
-    method int _turn_y(int x, int y, int dir)
-    method void draw(int x, int y, int dir)
-}
 class Main{
 	function void main()
-}
-class Node{
-	constructor Node new(int _data, List _next)
-	method void set_next(Node data)
-	method Node get_next()
-	method int get_data()
-}
-class Scalable{
-    constructor Scalable new(int width, int height, int times, Array map)
-    method void draw(int x, int y)
-}
-class Album{
-    function void init()
-    function Image get_tank(int type)
-    function Image get_soft()
-    function Image get_hard()
-    function Image get_QB()
-    function Image get_bullet()
-    function Image get_bomb(int n)
-    function Scalable get_board()
-    function Scalable get_board_qb()
-}
-class Book{
-	function Map get_map(int level)
-}
-class Cheat{
-	function void init()
-	function boolean get_penetrate()
-	function boolean get_seperate()
-	function boolean get_triple()
-	function boolean get_nocd()
-	function boolean get_all_soft()
-	function void set_penetrate()
-	function void set_seperate()
-	function void set_triple()
-	function void set_nocd()
-	function void set_all_soft()
-}
-class Label{
-	constructor Label new(int _x, int _y, int _data, String _label)
-	method void display()
-	method void assign(int _data)
-}
-class Map{
-	constructor Map new(Array _map)
-	method void debug_draw()
-	method void draw()
-	method boolean check(int x1, int y1, int x2, int y2)
-	method void update(int x1, int y1, int x2, int y2, int type)
-	method int peek(int x, int y)
-	method List get_tank_list()
-	method void destroy()
-}
-class Player{
-    constructor Player new(Tank _tank)
-    method void play()
-}
-class Statement{
-	function void init()
-	function void draw_frame()
-	function void update(int _life, int _enemy, int _score)
-	function void display()
-}
-class Board{
-    constructor Board new(int width, int height, Array map)
-    function void set_origin(int x, int y)
-	function void clear()
-    method void draw()
-}
-class Bullet{
-	function void init()
-	function void set_map(Map _map)
-	constructor Bullet new(int _x, int _y, int _dir, int _owner)
-	method boolean move()
 }
 class Game{
 	function void init()
@@ -107,15 +10,6 @@ class Game{
 	function void add_bomb(Bomb bomb)
 	function void over()
 	function void attack_tank(int x, int y)
-}
-class List{
-	constructor List new()
-    method void reset()
-	method boolean end()
-    method boolean next()
-    method int get()
-    method void insert(int data)
-    method void delete()
 }
 class Menu{
     constructor Menu new(int _row, int _col, int _n, Array _list)
@@ -129,9 +23,53 @@ class Menu{
     method int run()
     method void add_cheat(String code)
 }
-class Rand{
-    function void reset(int _a, int _t)
-    function int rand()
+class Album{
+    function void init()
+    function Image get_tank(int type)
+    function Image get_soft()
+    function Image get_hard()
+    function Image get_QB()
+    function Image get_bullet()
+    function Image get_bomb(int n)
+    function Scalable get_board()
+    function Scalable get_board_qb()
+}
+class Image{
+    constructor Image new(int width, int height, Array map)
+    function void set_origin(int x, int y)
+    function void clear(int x1, int y1, int x2, int y2)
+	function void debug(int x1, int y1, int x2, int y2)
+    method int _turn_x(int x, int y, int dir)
+    method int _turn_y(int x, int y, int dir)
+    method void draw(int x, int y, int dir)
+}
+class Scalable{
+    constructor Scalable new(int width, int height, int times, Array map)
+    method void draw(int x, int y)
+}
+class Book{
+	function Map get_map(int level)
+}
+class Map{
+	constructor Map new(Array _map)
+	method void debug_draw()
+	method void draw()
+	method boolean check(int x1, int y1, int x2, int y2)
+	method void update(int x1, int y1, int x2, int y2, int type)
+	method int peek(int x, int y)
+	method List get_tank_list()
+	method void destroy()
+}
+class Statement{
+	function void init()
+	function void draw_frame()
+	function void update(int _life, int _enemy, int _score)
+	function void display()
+}
+class Label{
+	constructor Label new(int _x, int _y, int _data, String _label)
+	method void display()
+	method void assign(int _data)
 }
 class Tank{
     constructor Tank new(int _type, int _x, int _y, int _dir)
@@ -146,4 +84,60 @@ class Tank{
     method boolean dead()
     method int attacked(int _x, int _y)
     method void _die()
+}
+class Bullet{
+	function void init()
+	function void set_map(Map _map)
+	constructor Bullet new(int _x, int _y, int _dir, int _owner)
+	method boolean move()
+}
+class AI{
+    constructor AI new(Tank _tank)
+    method void play()
+}
+class Player{
+    constructor Player new(Tank _tank)
+    method void play()
+}
+class Bomb{
+	function void init()
+	constructor Bomb new(int _x, int _y)
+	method boolean explode()
+}
+class List{
+	constructor List new()
+    method void reset()
+	method boolean end()
+    method boolean next()
+    method int get()
+    method void insert(int data)
+    method void delete()
+}
+class Node{
+	constructor Node new(int _data, List _next)
+	method void set_next(Node data)
+	method Node get_next()
+	method int get_data()
+}
+class Rand{
+    function void reset(int _a, int _t)
+    function int rand()
+}
+class CheatCode{
+    constructor CheatCode new(String _key)
+    method void reset()
+    method boolean complete(char a)
+}
+class Cheat{
+	function void init()
+	function boolean get_penetrate()
+	function boolean get_seperate()
+	function boolean get_triple()
+	function boolean get_nocd()
+	function boolean get_all_soft()
+	function void set_penetrate()
+	function void set_seperate()
+	function void set_triple()
+	function void set_nocd()
+	function void set_all_soft()
 }
