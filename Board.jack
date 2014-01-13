@@ -1,0 +1,52 @@
+class Board{
+    static int off_x, off_y;
+
+    field int _width, _height;
+    field Array _map;
+
+    constructor Board new(int width, int height, Array map)
+    {
+        let _width = width;
+        let _height = height;
+        let _map = map;
+        return this;
+    }
+    function void set_origin(int x, int y)
+    {
+        let off_x = x;
+        let off_y = y;
+        return;
+    }
+
+	function void clear(){
+		do Screen.setColor(false);
+		do Screen.drawRectangle(216,128,336,248);
+		return;
+	}
+    method void draw()
+    {
+        var int i, j, k, l, t;
+        let i = 0;
+        let l = 0;
+        let k = 1;
+        while(i < _height)
+        {
+            let j = 0;
+            while (j < _width)
+            {
+                do Screen.setColor(~(k&_map[l]=0));
+                //do Screen.drawRectangle(j*8+off_x, i*8+off_y, j*8+off_x+7, i*8+off_y+7);
+                if(k < 0) //已經畫完最高位
+                {
+                    let k = 1;
+                    let l = l + 1;
+                }
+                else { let k = k + k; }
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+
+}
