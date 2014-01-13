@@ -1,0 +1,137 @@
+class AI{
+    method void play()
+}
+class Bomb{
+	function void init()
+	method boolean explode()
+}
+class CheatCode{
+    method void reset()
+    method boolean complete(char a)
+}
+class Image{
+    function void set_origin(int x, int y)
+    function void clear(int x1, int y1, int x2, int y2)
+	function void debug(int x1, int y1, int x2, int y2)
+    method int _turn_x(int x, int y, int dir)
+    method int _turn_y(int x, int y, int dir)
+    method void draw(int x, int y, int dir)
+}
+class Main{
+	function void main()
+}
+class Node{
+	method void set_next(Node data)
+	method Node get_next()
+	method int get_data()
+}
+class Scalable{
+    method void draw(int x, int y)
+}
+class Album{
+    function void init()
+    function Image get_tank(int type)
+    function Image get_soft()
+    function Image get_hard()
+    function Image get_QB()
+    function Image get_bullet()
+    function Image get_bomb(int n)
+    function Scalable get_board()
+    function Scalable get_board_qb()
+}
+class Book{
+	function Map get_map(int level)
+}
+class Cheat{
+	function void init()
+	function boolean get_penetrate()
+	function boolean get_seperate()
+	function boolean get_triple()
+	function boolean get_nocd()
+	function boolean get_all_soft()
+	function boolean get_imba()
+	function void set_penetrate()
+	function void set_seperate()
+	function void set_triple()
+	function void set_nocd()
+	function void set_all_soft()
+	function void set_imba()
+}
+class Label{
+	method void display()
+	method void assign(int _data)
+}
+class Map{
+	method void debug_draw()
+	method void draw()
+	method boolean check(int x1, int y1, int x2, int y2)
+	method void update(int x1, int y1, int x2, int y2, int type)
+	method int peek(int x, int y)
+	method List get_tank_list()
+	method void destroy()
+}
+class Player{
+    method void play()
+}
+class Statement{
+	function void init()
+	function void draw_frame()
+	function void update(int _life, int _enemy, int _score)
+	function void display()
+}
+class Board{
+    function void set_origin(int x, int y)
+	function void clear()
+    method void draw()
+}
+class Bullet{
+	function void init()
+	function void set_map(Map _map)
+	method boolean move()
+}
+class Game{
+	function void init()
+	function void ready(int level)
+	function int run()
+	function void close() 
+	function void add_bullet(Bullet bullet)
+	function void add_bomb(Bomb bomb)
+	function void over()
+	function void attack_tank(int x, int y)
+}
+class List{
+    method void reset()
+	method boolean end()
+    method boolean next()
+    method int get()
+    method void insert(int data)
+    method void delete()
+}
+class Menu{
+    function void _xor(int row, int col)
+    method void _draw_select(boolean color)
+    method void _draw_select(boolean color)
+    method void _draw_select(boolean color)
+    method char _input()
+    method void _reset_cheat()
+    method int _check_cheat(char c)
+    method int run()
+    method void add_cheat(String code)
+}
+class Rand{
+    function void reset(int _a, int _t)
+    function int rand()
+}
+class Tank{
+	method void set_live(int _live)
+    function void init()
+    function void set_map(Map _map)
+	method void shoot(int _dir)
+    method boolean move(int _dir)
+	method int get_type()
+	method int get_live()
+	method int get_dir()
+    method boolean dead()
+    method int attacked(int _x, int _y)
+    method void _die()
+}
