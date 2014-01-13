@@ -8,11 +8,12 @@ class Main{
 		do Album.init();
 		do Cheat.init();
 
-        let list = Array.new(3);
+        let list = Array.new(4);
         let list[0] = "Start";
         let list[1] = "Level";
-        let list[2] = "Exit";
-        let main_menu = Menu.new(15, 30, 3, list);
+        let list[2] = "Athors";
+        let list[3] = "Exit";
+        let main_menu = Menu.new(15, 30, 4, list);
 		do main_menu.add_cheat("CSIE");
 		do main_menu.add_cheat("IMBA");
 		do main_menu.add_cheat("SOFT");
@@ -33,7 +34,7 @@ class Main{
         do Screen.clearScreen();
 		do board.draw(16, 8);
         do board_qb.draw(320, 130);
-        while(~(input=2))
+        while(~(input=3))
         {
 			let status = 1;
             let input = main_menu.run();
@@ -68,13 +69,21 @@ class Main{
                     do board_qb.draw(320, 130);
                 }
             }
-            if (input = 3){ do Cheat.set_penetrate(); } //JIZZ
-			if (input = 4){ do Cheat.set_seperate(); } //XDDD
-			if (input = 5){ do Cheat.set_triple(); } //ACHIN
-			if (input = 6){ do Cheat.set_nocd(); } //NOCD
-			if (input = 7){ do Cheat.set_all_soft(); } //SOFT
-			if (input = 8){ do Cheat.set_imba(); } //IMBA
-			if (input = 9){ //CSIE
+            if (input = 2)
+            {
+                do Author.draw();
+                do Sys.wait(1500);
+                do Screen.clearScreen();
+                do board.draw(16, 8);
+                do board_qb.draw(320, 130);
+            }
+            if (input = 4){ do Cheat.set_penetrate(); } //JIZZ
+			if (input = 5){ do Cheat.set_seperate(); } //XDDD
+			if (input = 6){ do Cheat.set_triple(); } //ACHIN
+			if (input = 7){ do Cheat.set_nocd(); } //NOCD
+			if (input = 8){ do Cheat.set_all_soft(); } //SOFT
+			if (input = 9){ do Cheat.set_imba(); } //IMBA
+			if (input = 10){ //CSIE
 				do Cheat.set_penetrate();
 				do Cheat.set_seperate();
 				do Cheat.set_triple();
