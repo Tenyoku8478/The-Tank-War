@@ -8,13 +8,14 @@ class Main{
 		do Author.init();
 		do Album.init();
 		do Cheat.init();
+		do Map_maker.init();
 
         let list = Array.new(4);
         let list[0] = "Start";
         let list[1] = "Level";
         let list[2] = "Authors";
         let list[3] = "Exit";
-        let main_menu = Menu.new(15, 30, 4, list);
+        let main_menu = Menu.new(15, 30, 4, list, true);
 		do main_menu.add_cheat("CSIE");
 		do main_menu.add_cheat("IMBA");
 		do main_menu.add_cheat("SOFT");
@@ -23,11 +24,12 @@ class Main{
 		do main_menu.add_cheat("XDDD");
         do main_menu.add_cheat("JIZZ");
 
-        let list = Array.new(3);
+        let list = Array.new(4);
         let list[0] = "level 1";
         let list[1] = "level 2";
         let list[2] = "level 3";
-        let level_menu = Menu.new(15, 29, 3, list);
+        let list[3] = "DIY map";
+        let level_menu = Menu.new(15, 29, 4, list, true);
 
 		let board = Album.get_board();
 		let board_qb = Album.get_board_qb();
@@ -43,7 +45,16 @@ class Main{
                 do Game.init();
 				if (input = 0){let level = 1;}
 				else{let level = level_menu.run() + 1;}
-                if(~(level=0)){
+                if(level = 4){
+                    do Game.ready(100);
+                    let status = Game.run();
+                    do Game.close();
+                    do Cheat.init();
+                    do Screen.clearScreen();
+                    do board.draw(16, 8);
+                    do board_qb.draw(320, 130);
+                }
+                else { if(~(level=0)){
                     while((status = 1) & (level < 4)){
 						do Screen.clearScreen();
                         do Output.moveCursor(12, 28);
@@ -68,7 +79,7 @@ class Main{
                     do Screen.clearScreen();
                     do board.draw(16, 8);
                     do board_qb.draw(320, 130);
-                }
+                }}
             }
             if (input = 2)
             {

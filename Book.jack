@@ -611,7 +611,7 @@ class Book{
 			let map[148] = 0;
 			let map[149] = 4;
 		}
-		else{
+		else{ if (level = 5) {
 			let map[0] = 4;
 			let map[1] = 4;
 			let map[2] = 4;
@@ -762,7 +762,10 @@ class Book{
 			let map[147] = 0;
 			let map[148] = 0;
 			let map[149] = 4;
-		}}}}
+		}
+        else { if (level = 100){
+            let map = Map_maker.make();
+        }}}}}}
 		return  Map.new(map);
 	}
 }

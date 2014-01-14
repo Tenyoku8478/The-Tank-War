@@ -24,7 +24,7 @@ class Image
         do Screen.drawRectangle(x1+off_x, y1+off_y, x2+off_x, y2+off_y);
         return;
     }
-	function void debug(int x1, int y1, int x2, int y2){
+	function void fill(int x1, int y1, int x2, int y2){
         do Screen.setColor(true);
         do Screen.drawRectangle(x1+off_x, y1+off_y, x2+off_x, y2+off_y);
         return;

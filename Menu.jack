@@ -3,15 +3,17 @@ class Menu
     field Array list;
     field int now;
     field int row, col, n, width;
+    field boolean auto_clean;
     field List cheat_list;
 
-    constructor Menu new(int _row, int _col, int _n, Array _list)
+    constructor Menu new(int _row, int _col, int _n, Array _list, boolean _auto_clean)
     {
         var int i;
         var String str;
         let row = _row;
         let col = _col;
         let n = _n;
+        let auto_clean = _auto_clean;
         let now = 0;
         let list = _list;
         let cheat_list = List.new();
@@ -41,33 +43,6 @@ class Menu
         }
         return;
     }
-    /*
-    method void _draw_select(boolean color)
-    {
-        do Screen.setColor(color);
-        do Screen.drawLine(col*8-2, (row+now+now)*11-2, col*8-2, (row+now+now+1)*11+1);
-        do Screen.drawLine((col+width)*8+1, (row+now+now)*11-2, (col+width)*8+1, (row+now+now+1)*11+1);
-        do Screen.drawLine(col*8-2, (row+now+now)*11-2, (col+width)*8+1, (row+now+now)*11-2);
-        do Screen.drawLine(col*8-2, (row+now+now+1)*11+1, (col+width)*8+1, (row+now+now+1)*11+1);
-        return;
-    }
-    method void _draw_select(boolean color)
-    {
-        var String str;
-        let str = list[now];
-        do Output.moveCursor(row+now+now, col-1);
-        if(color)
-        {
-            do Output.printString(str);
-            do Output.printChar(32);
-        }
-        else
-        {
-            do Output.printChar(32);
-            do Output.printString(str);
-        }
-        return;
-    }*/
     method void _draw_select(boolean color)
     {
         var String str;
@@ -165,8 +140,11 @@ class Menu
             }
         }
         do _draw_select(0);
-        do Screen.setColor(false);
-        do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
+        if(auto_clean)
+        {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
+        }
         return flag;
     }
     method void add_cheat(String code)
