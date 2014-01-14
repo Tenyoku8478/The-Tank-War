@@ -76,53 +76,54 @@ class Map{
 		return;
 	}
 
-	method void draw(){
-		var int row, col, i, j, type;
-        var int row15, col15;
-        var int row24, col24;
-		var Image soft, hard, QB, tank1, tank2;
+    function void _draw_item(int row, int col, int type){
+        var int i, j;
+		var Image soft, hard, tank1, tank2;
 		let tank1 = Album.get_tank(1);
 		let tank2 = Album.get_tank(2);
 		let soft = Album.get_soft();
 		let hard = Album.get_hard();
+        if (type = 0){
+            do Image.clear(col*24, row*24, col*24+23, row*24+23);
+        }
+        if (type = 1){
+            do tank1.draw(col*24, row*24, 0);
+        }
+        if (type = 2){
+            do tank2.draw(col*24, row*24, 0);
+        }
+        if (type = 3){ //Soft
+            let i = 0;
+            while (i < 24){
+                let j = 0;
+                while (j < 24){
+                    do soft.draw(col*24+i, row*24+j, 0);
+                    let j = j + 8;
+                }
+                let i = i + 8;
+            }
+        }
+        if (type = 4){ //Hard
+            do hard.draw(col*24, row*24, 0);
+        }
+        return;
+    }
+
+	method void draw(){
+		var int row, col, i, j, type;
+        var Image QB, soft;
 		let QB = Album.get_QB();
+		let soft = Album.get_soft();
 		let row = 0;
-        let row15 = 0;
-        let row24 = 0;
 		while (row < 10){
 			let col = 0;
-			let col15 = 0;
-			let col24 = 0;
 			while (col < 15){
-                let type = map24[row15+col];
+                let type = map24[row*15+col];
                 //if((type=4)&Cheat.get_all_soft()) { let type = 3; }
-				if (type = 1){
-					do tank1.draw(col24, row24, 0);
-				}
-				if (type = 2){
-					do tank2.draw(col24, row24, 0);
-				}
-				if (type = 3){ //Soft
-					let i = 0;
-					while (i < 24){
-						let j = 0;
-						while (j < 24){
-							do soft.draw(col24+i, row24+j, 0);
-							let j = j + 8;
-						}
-						let i = i + 8;
-					}
-				}
-				if (type = 4){ //Hard
-					do hard.draw(col24, row24, 0);
-				}
+                do Map._draw_item(row, col, type);
 				let col = col + 1;
-				let col15 = col15 + 15;
-				let col24 = col24 + 24;
 			}
 			let row = row + 1;
-			let row15 = row15 + 15;
-			let row24 = row24 + 24;
 		}
 		if (map24[127] = 0){
 			do QB.draw(160, 200, 0);
